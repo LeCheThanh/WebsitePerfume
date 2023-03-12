@@ -1,4 +1,7 @@
 <?php
+
+use LDAP\Result;
+
     include '../libs/database.php';
     include '../helpers/format.php';
 ?>
@@ -61,6 +64,18 @@ Class categoryC{
         }
         if($result!=false){
             $arlet = "Sửa thành công !!";
+            return $arlet;
+        }else{
+            $arlet= "Lỗi";
+            return $arlet;
+
+        }
+    }
+    public function deleteCate($delCate){
+        $query=" DELETE  FROM  `categories` WHERE cateId ='$delCate'";
+        $result=$this->db->delete($query);
+        if($result!=false){
+            $arlet = "Xóa thành công !!";
             return $arlet;
         }else{
             $arlet= "Lỗi";

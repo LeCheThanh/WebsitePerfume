@@ -3,6 +3,10 @@
 <?php include '../classes/categoryC.php'?>
 <?php
     $class = new categoryC();
+    if(isset($_GET['delId']) ){
+        $delId=$_GET['delId'];
+        $delCate= $class->deleteCate($delId);
+        }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +18,11 @@
 </head>
 <body>
     <table>
+    <?php
+            if(isset($delCate)){
+                echo $delCate;
+            }
+            ?>
     <tr>
         <th>cateId</th>
         <th>cateName</th>
@@ -38,7 +47,7 @@
             <td><?php echo $result['cateDescription'];?></td>
             <td><?php echo $result['createAt'];?></td>
             <td><?php echo $result['updateAt'];?></td>
-            <td><a href="cateEdit.php?cateId=<?php echo $result['cateId']?>">Edit</a>|<a href="?cateId=<?php echo $result['cateId']?>">Delete</a></td>
+            <td><a href="cateEdit.php?cateId=<?php echo $result['cateId']?>">Edit</a>|<a onclick="return confirm('Bạn chắc chắn muốn xóa?')" href="?delId=<?php echo $result['cateId']?>">Delete</a></td>
         </tr>
         <?php }
     } ?>

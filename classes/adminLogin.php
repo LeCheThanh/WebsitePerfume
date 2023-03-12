@@ -25,7 +25,7 @@ Class adminLogin{
             $arlet = "username va password khong duoc de trong";
             return $arlet;
         }else{
-            $query="SELECT * FROM `admin` WHERE `adminUser`='.$adminUser.' AND `adminPass` ='$adminPass'";
+            $query="SELECT * FROM `admin` WHERE `adminUser`='$adminUser' AND `adminPass` ='$adminPass'";
             $result = $this->db->select($query);
         }
         if($result!=false){
@@ -34,7 +34,7 @@ Class adminLogin{
             Session::set('adminId',$value['adminId']);
             Session::set('adminUser',$value['adminUser']);
             Session::set('adminName',$value['adminName']);
-            header('Location: index.php');
+            header('Location:./index.php');
         }else{
             $arlet = "password sai hoac username khong ton tai";
             return $arlet;

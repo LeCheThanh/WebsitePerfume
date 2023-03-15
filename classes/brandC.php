@@ -44,35 +44,37 @@ Class brandC{
         $result = $this->db->select($query);
         return $result;
     }
-    // public function getbyId($id){
-    //     $query=" SELECT * FROM  `categories` WHERE cateId='$id'";
-    //     $result = $this->db->select($query);
-    //     return $result;
-    // }
-    // public function updateCate($cateName, $id,$cateDescription){
-    //     $cateName= $this->frm->validation($cateName);
-    //     $cateDescription= $this->frm->validation($cateDescription);
-    //     $cateName = mysqli_real_escape_string($this->db->link,$cateName);
-    //     $cateDescription = mysqli_real_escape_string($this->db->link, $cateDescription);
-    //     $id = mysqli_real_escape_string($this->db->link, $id );
-    //     // $updateAt = mysqli_real_escape_string($this->db->link, $updateAt);
+    public function getbyId($id){
+        $query=" SELECT * FROM  `brand` WHERE brandId='$id'";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    public function updateBrand($brandName, $id,$brandDesc,$brandImage){
+        $brandName= $this->frm->validation($brandName);
+        $brandDesc= $this->frm->validation($brandDesc);
+        $brandImage= $this->frm->validation($brandImage);
+        $cateName = mysqli_real_escape_string($this->db->link,$brandName);
+        $brandDesc = mysqli_real_escape_string($this->db->link, $brandDesc);
+        $id = mysqli_real_escape_string($this->db->link, $id );
+        $brandImage = mysqli_real_escape_string($this->db->link, $brandImage );
+        // $updateAt = mysqli_real_escape_string($this->db->link, $updateAt);
        
-    //     if(empty($cateName)){
-    //         $arlet = "Tên danh mục đang trống!!";
-    //         return $arlet;
-    //     }else{
-    //         $query=" UPDATE  `categories` SET cateName='$cateName' ,cateDescription='$cateDescription', updateAt = now() WHERE cateid='$id'"; //, updateAt = '$updateAt'
-    //         $result = $this->db->update($query);
-    //     }
-    //     if($result!=false){
-    //         $arlet = "Sửa thành công !!";
-    //         return $arlet;
-    //     }else{
-    //         $arlet= "Lỗi";
-    //         return $arlet;
+        if(empty($cateName)){
+            $arlet = "Tên danh mục đang trống!!";
+            return $arlet;
+        }else{
+            $query=" UPDATE  `brand` SET brandName='$brandName' ,brandDescription='$brandDesc', brandImage='$brandImage' WHERE brandId='$id'"; //, updateAt = '$updateAt'
+            $result = $this->db->update($query);
+        }
+        if($result!=false){
+            $arlet = "Sửa thành công !!";
+            return $arlet;
+        }else{
+            $arlet= "Lỗi";
+            return $arlet;
 
-    //     }
-    // }
+        }
+    }
     // public function deleteCate($delCate){
     //     $query=" DELETE  FROM  `categories` WHERE cateId ='$delCate'";
     //     $result=$this->db->delete($query);

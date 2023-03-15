@@ -42,7 +42,7 @@
             <td><?php echo $result['brandName'];?></td>
             <td><?php echo $result['brandImage'];?></td>
             <td><?php echo $result['brandDescription'];?></td>
-            <td><a href="cateEdit.php?cateId=<?php echo $result['brandId']?>">Edit</a>|<a onclick="return confirm('Bạn chắc chắn muốn xóa?')" href="?delId=<?php echo $result['brandId']?>">Delete</a></td>
+            <td><a href="brandEdit.php?brandId=<?php echo $result['brandId']?>">Edit</a>|<a onclick="return confirm('Bạn chắc chắn muốn xóa?')" href="?delbrandId=<?php echo $result['brandId']?>">Delete</a></td>
         </tr>
         <?php }
     } ?>

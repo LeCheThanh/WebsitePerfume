@@ -49,6 +49,7 @@
             <td><?php echo $result['updateAt'];?></td>
             <td><a href="cateEdit.php?cateId=<?php echo $result['cateId']?>">Edit</a>|<a onclick="return confirm('Bạn chắc chắn muốn xóa?')" href="?delId=<?php echo $result['cateId']?>">Delete</a></td>
         </tr>
+            
         <?php }
     } ?>
     </table>

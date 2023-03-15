@@ -29,14 +29,12 @@
       </li>
       <li class="mb-1">
         <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-          Dashboard
+          Thương hiệu
         </button>
         <div class="collapse" id="dashboard-collapse" style="">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Overview</a></li>
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Weekly</a></li>
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Monthly</a></li>
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Annually</a></li>
+            <li><a href="brandAdd.php" class="link-dark d-inline-flex text-decoration-none rounded">Thêm thương hiệu</a></li>
+            <li><a href="brandList.php" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách thương hiệu</a></li>
           </ul>
         </div>
       </li>
@@ -47,7 +45,7 @@
         <div class="collapse" id="orders-collapse" style="">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li><a href="cateAdd.php" class="link-dark d-inline-flex text-decoration-none rounded">Thêm danh mục</a></li>
-            <li><a href="catelist.php" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách danh mục</a></li>
+            <li><a href="cateList.php" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách danh mục</a></li>
         </div>
       </li>
       <li class="border-top my-3"></li>

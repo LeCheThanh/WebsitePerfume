@@ -10,7 +10,7 @@
     }
 ?>
 <div >
-    <form action="addcatelist.php" method="post">
+    <form action="cateAdd.php" method="post">
         <div>
             <?php
             if(isset($insertCate)){

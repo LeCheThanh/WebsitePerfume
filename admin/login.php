@@ -23,7 +23,7 @@
 </head>
 <body class="text-center">
 <main class="form-signin w-100 m-auto">
-  <form action="login.php" method="post">
+  <form action="login.php" method="post" id="login-form">
     <h1 class="h3 mb-3 fw-normal">LOGIN</h1>
     <span>
         <?php
@@ -51,5 +51,32 @@
     <p class="mt-5 mb-3 text-muted">© 2017–2022</p>
   </form>
 </main>
+ <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+  $( "#login-form" ).submit(function( event ) {
+    event.preventDefault();
+    $.ajax({
+        type: "POST",
+        url: './login.php',
+        data: $( this ).serializeArray(),
+        success: function(response){
+          response = JSON.parse(response);
+          console.log("console :",console);
+          if(response.status==0){
+            // toastr.error('Have fun storming the castle!', 'Miracle Max Says')
+            swal("Thông báo", response.message, "error");
+            //alert(response.message);
+          }else{
+            swal("Thông báo", response.message, "success");
+            // alert(response.message);
+            // location:reload();
+            setTimeout(function(){location.href ='index.php';}, 1000);
+          }
+          
+        }
+      });
+  }); 
+</script>
 </body>
 </html>

@@ -22,8 +22,14 @@ Class adminLogin{
         $adminPass = mysqli_real_escape_string($this->db->link,$adminPass);
 
         if(empty($adminUser)||empty($adminPass)){
-            $arlet = "username va password khong duoc de trong";
-            return $arlet;
+            // $arlet = "username va password khong duoc de trong";
+            // return $arlet;
+            echo json_encode(array(
+                'status'=>0,
+                'message'=>'user và pass không được để trống'
+
+            ));
+            exit;
         }else{
             $query="SELECT * FROM `admin` WHERE `adminUser`='$adminUser' AND `adminPass` ='$adminPass'";
             $result = $this->db->select($query);
@@ -34,10 +40,19 @@ Class adminLogin{
             Session::set('adminId',$value['adminId']);
             Session::set('adminUser',$value['adminUser']);
             Session::set('adminName',$value['adminName']);
-            header('Location:./index.php');
+            echo json_encode(array(
+                'status'=>1,
+                'message'=>'đăng nhập thành công'
+            ));
+            exit;
         }else{
-            $arlet = "password sai hoac username khong ton tai";
-            return $arlet;
+            // $arlet = "password sai hoac username khong ton tai";
+            // return $arlet;
+            echo json_encode(array(
+                'status'=>0,
+                'message'=>'user và pass không tồn tại'
+            ));
+            exit;
         }
 
     }

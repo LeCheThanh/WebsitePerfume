@@ -75,18 +75,18 @@ Class brandC{
 
         }
     }
-    // public function deleteCate($delCate){
-    //     $query=" DELETE  FROM  `categories` WHERE cateId ='$delCate'";
-    //     $result=$this->db->delete($query);
-    //     if($result!=false){
-    //         $arlet = "Xóa thành công !!";
-    //         return $arlet;
-    //     }else{
-    //         $arlet= "Lỗi";
-    //         return $arlet;
+    public function deleteBrand($delBrand){
+        $query=" DELETE  FROM  `brand` WHERE brandId ='$delBrand'";
+        $result=$this->db->delete($query);
+        if($result!=false){
+            $arlet = "Xóa thành công !!";
+            return $arlet;
+        }else{
+            $arlet= "Lỗi";
+            return $arlet;
 
-    //     }
-    // }
+        }
+    }
 }
 
 ?>

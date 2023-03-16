@@ -7,6 +7,7 @@
         $cateName = $_POST['cateName'];
         $cateDesc = $_POST['cateDesc'];
         $insertCate=$class->insertCate($cateName, $cateDesc);
+            echo '<meta http-equiv="refresh" content="1; url=cateList.php" />';
     }
 ?>
 <div >
@@ -14,8 +15,8 @@
         <div>
             <?php
             if(isset($insertCate)){
-                echo $insertCate;
-            }
+                echo $insertCate;}
+                
             ?>
         </div>
     <table>

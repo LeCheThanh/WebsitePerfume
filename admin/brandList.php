@@ -3,10 +3,10 @@
 <?php include '../classes/brandC.php'?>
 <?php
     $brand = new brandC();
-    // if(isset($_GET['delId']) ){
-    //     $delId=$_GET['delId'];
-    //     $delCate= $class->deleteCate($delId);
-    //     }
+    if(isset($_GET['delbrandId']) ){
+        $delId=$_GET['delbrandId'];
+        $delBrand= $brand->deleteBrand($delId);
+        }
 ?>
 <!DOCTYPE html>
 <html lang="en">

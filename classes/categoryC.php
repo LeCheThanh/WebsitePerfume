@@ -2,8 +2,8 @@
 
 use LDAP\Result;
 
-    include '../libs/database.php';
-    include '../helpers/format.php';
+include_once '../libs/database.php';
+include_once '../helpers/format.php';
 ?>
 
 <?php

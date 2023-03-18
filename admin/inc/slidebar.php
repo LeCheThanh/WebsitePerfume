@@ -18,12 +18,12 @@
       <ul class="list-unstyled ps-0">
         <li class="mb-1">
           <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-            Home
+            Sản phẩm
           </button>
           <div class="collapse show" id="home-collapse" style="">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Overview</a></li>
-              <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Updates</a></li>
+              <li><a href="productAdd.php" class="link-dark d-inline-flex text-decoration-none rounded">Thêm sản phẩm</a></li>
+              <li><a href="productList.php" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách sản phẩm</a></li>
               <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Reports</a></li>
             </ul>
           </div>

@@ -28,7 +28,6 @@
             <?php
                 $getCate=$class->getbyId($cateId);
                 if( $getCate){
-                    while ($result = $getCate->fetch_assoc()){
 
 
             
@@ -58,6 +57,6 @@
 
     </form>
     <?php         }
-                }?>
+                ?>
 
 </div>

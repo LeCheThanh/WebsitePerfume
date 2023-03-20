@@ -30,9 +30,9 @@ Class productC{
         $file_temp = $_FILES['productImage']['tmp_name'];
 
         $div = explode('.', $file_name);
-        $file_ext = strtolower(end ($div));
+        $file_ext = strtolower(end ($div)); 
         $unique_image = substr(md5(time()), 0, 10).'.'. $file_ext;
-        $uploaded_image = "uploads/" .$unique_image;
+        $uploaded_image = "uploads/product/" .$unique_image;
         ////
         if($productName=="" ||  $productDesc=="" || $category=="" ||$brand=="" ||$productPrice=="" ||$productType=="" ||  $file_name=="" ){
             $arlet = "Không được để trống !!";

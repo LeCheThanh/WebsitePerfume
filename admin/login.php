@@ -63,7 +63,7 @@
         data: $( this ).serializeArray(),
         success: function(response){
           response = JSON.parse(response);
-          console.log("console :",console);
+          console.log("response :",response);
           if(response.status==0){
             // toastr.error('Have fun storming the castle!', 'Miracle Max Says')
             swal("Thông báo", response.message, "error");

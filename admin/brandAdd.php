@@ -1,23 +1,11 @@
 <?php include 'inc/header.php';?>
 <?php include 'inc/slidebar.php';?>
-<?php include '../classes/brandC.php'?>
-<?php
-    $brand = new brandC();
-    if($_SERVER['REQUEST_METHOD']==='POST'){
-        $brandName = $_POST['brandName'];
-        // $brandImage = $_POST['brandImage'];
-        $brandDesc = $_POST['brandDesc'];
-        $insertBrand=$brand->insertBrand($brandName, $_FILES,$brandDesc);
-    }
-?>
-<!-- <script type="text/javascript" src="/assets/ajaxupload.js"></script> -->
+
 <div >
-    <form action="brandAdd.php" method="post"  id="form_add_brand" enctype="multipart/form-data">
+    <form action="" method="post"  id="form_add_brand" enctype="multipart/form-data">
         <div>
             <?php
-        //     if(isset($insertBrand)){
-        //         echo $insertBrand;
-        //  }
+        
             ?>
         </div>
     <table>
@@ -52,32 +40,52 @@
 
 </div>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
-<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-$(document).ready(function(){
-    $( "#form_add_brand" ).submit(function( event ) {
-    event.preventDefault();
+$(document).ready(function() {
+$('#form_add_brand').submit(function(event) {
+    event.preventDefault(); // Ngăn chặn form submit bình thường
+    var formData = new FormData(this); // Tạo đối tượng FormData để chứa dữ liệu form
     $.ajax({
-        url:"brandAdd.php",
-        type:"post",
-        data: new FormData(this),
-        contentType:false,
-        processData:false,
-        success:function(data){
-            $('#preview').html(data);
-            $('#uploadImage').val('');
-            // data = JSON.parse(data);
-            // console.log("console :",console);
-            // if(data.status==0){
-            //     swal("Thông báo", response.message, "error");
-
-            // }else{
-            //     swal("Thông báo", response.message, "success");
-            //     setTimeout(function(){location.href ='brandList.php';}, 1000);
-            // }
-            }
-         });
+      type: 'POST', 
+      url: './xuly.php',
+      data: formData,
+      contentType: false,
+      processData: false,
+      dataType: 'json',
+      success: function(response) {
+        // response = JSON.parse(response);
+        console.log("response :",response);
+        if (response.status == 1) {
+          // Thêm thành công, hiển thị thông báo và reset form
+          alert(response.message);
+          form.trigger('reset');
+        } else {
+          // Thêm thất bại, hiển thị thông báo lỗi
+          alert(response.message);
+        }
+      },
+      error: function() {
+        // Lỗi kết nối đến server
+        alert('Không thể kết nối đến server');
+        // var msg = '';
+        // if (jqXHR.status === 0) {
+        //     msg = 'Not connect.\n Verify Network.';
+        // } else if (jqXHR.status == 404) {
+        //     msg = 'Requested page not found. [404]';
+        // } else if (jqXHR.status == 500) {
+        //     msg = 'Internal Server Error [500].';
+        // } else if (exception === 'parsererror') {
+        //     msg = 'Requested JSON parse failed.';
+        // } else if (exception === 'timeout') {
+        //     msg = 'Time out error.';
+        // } else if (exception === 'abort') {
+        //     msg = 'Ajax request aborted.';
+        // } else {
+        //     msg = 'Uncaught Error.\n' + jqXHR.responseText;
+        // }
+      }
     });
+  });
 });
 </script>

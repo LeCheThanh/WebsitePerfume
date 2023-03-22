@@ -16,20 +16,29 @@ Class brandC{
         $this->db= new Database(); 
         $this->frm= new Format();
     }
-    public function insertBrand($brandName, $brandDesc,$brandImage){        
+    public function insertBrand($brandName, $brandDesc,$file){        
         $brandName = $this->frm->validation($brandName);
         $brandDesc= $this->frm->validation($brandDesc);
         $brandName = mysqli_real_escape_string($this->db->link,$brandName);
         $brandDesc = mysqli_real_escape_string($this->db->link, $brandDesc);
-        $image = $this->fileImage->uploadimage($brandImage);
-        if ($image === false) {
-            echo json_encode(array(
-                'status' => 0,
-                'message' => 'Lỗi khi upload ảnh'
-            ));
-            exit;
-        }
-        if(empty($brandName)|| empty($brandDesc) ){
+        // $image = $this->fileImage->uploadimage($brandImage);
+        // if ($image === false) {
+        //     echo json_encode(array(
+        //         'status' => 0,
+        //         'message' => 'Lỗi khi upload ảnh'
+        //     ));
+        //     exit;
+        // }
+        $permited = array('jpg', 'jpeg', 'png', 'gif');
+        $file_name = $_FILES['brandImage']['name'];
+        $file_size = $_FILES['brandImage']['size'];
+        $file_temp = $_FILES['brandImage']['tmp_name'];
+
+        $div = explode('.', $file_name);
+        $file_ext = strtolower(end ($div)); 
+        $unique_image = substr(md5(time()), 0, 10).'.'. $file_ext;
+        $uploaded_image = "uploads/brand/" .$unique_image;
+        if(empty($brandName)|| empty($brandDesc || !$file_name) ){
 
             echo json_encode(array(
                 'status'=>0,
@@ -37,8 +46,8 @@ Class brandC{
             ));
             exit;
         }else{
-
-            $query="INSERT INTO `brand` (brandName, brandDescription, brandImage) VALUES ('$brandName', '$brandDesc', '$image')";
+            move_uploaded_file($file_temp,$uploaded_image);
+            $query="INSERT INTO `brand` (brandName, brandDescription, brandImage) VALUES ('$brandName', '$brandDesc', '$unique_image')";
             $result = $this->db->insert($query);
             if ($result) {
                 echo json_encode(array(

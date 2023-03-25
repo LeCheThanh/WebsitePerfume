@@ -47,7 +47,10 @@
         <tr>
             <td> Trạng thái</td>
             <td>
-            <input type="int" name="productStatus">
+            <select name="productStatus" id="selected">
+                    <option value="1">Còn hàng</option>
+                    <option value="0">Hết hàng</option>
+                </select>
             </td>
         </tr>
         <tr>

@@ -14,18 +14,13 @@
     
     <div >
 
-        <form action="../controllers/productController.php" method="post" enctype="multipart/form-data">
+        <form action="" method="post" enctype="multipart/form-data">
             <div>
                 <?php
-                if(isset($insertProduct)){
-                    echo $insertProduct;
-                 }
-                if($getProduct){
-                    while ($result = $getProduct->fetch_assoc()){ 
-              
-                   ?>
-             
-                
+                if(isset($productEdit)){
+                    echo $productEdit;
+                 } 
+                   ?>             
             </div>
         <table>
             <tr>
@@ -41,7 +36,7 @@
                    Mô tả
                 </td>
                 <td>
-                    <textarea name="productDesc" id="" cols="30" rows="10" value="<?php echo $result['productDesc']?>"></textarea>
+                    <textarea name="productDesc" id="" cols="30" rows="10" ><?php echo $result['productDesc']?></textarea>
                 </td>
             </tr>
             <tr>
@@ -57,7 +52,16 @@
             <tr>
                 <td> Trạng thái</td>
                 <td>
-                <input type="int" name="productStatus">
+                <select name="productStatus" id="select" >
+                        <?php if($result['productStatus'] == 1){
+                        ?>
+                        <option selected value="1">Còn hàng</option>
+                        <option value="0">Hết hàng</option>
+                        <?php }else { ?>
+                            <option  value="1">Còn hàng</option>
+                            <option selected value="0">Hết hàng</option>
+                            <?php }?>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -67,16 +71,46 @@
                 <td>
                     <Select name="category" id="select">
                         <option>--Chọn danh mục sản phẩm--</option>
-                      
+                        <?php 
+                            if($catelist){
+                                while($resultcate = $catelist->fetch_assoc()) { ?>
+                                    <option
+                                    <?php 
+                                    if($resultcate['cateId']==$result['category_id'])
+                                    {echo 'selected'; }
+                                    ?>
+                                     value="<?php echo $resultcate['cateId']?>"><?php echo $resultcate['cateName']?></option>
+                                    <?php 
+                                            }
+                                    }
+                                    
+                                        ?>
+                                </Select>   
                 </td>
             </tr>
             <tr>
-                <td>
-                    Thương hiệu
-                </td>
-                <td>
-          
-                </td>
+            <td>
+                Thương hiệu
+            </td>
+            <td>
+                <Select name="brand" id="select">
+                    <option >--Chọn thương hiệu sản phẩm--</option>
+                    <?php 
+                        if($brandlist){
+                            while($resultbrand = $brandlist->fetch_assoc()) { ?>
+                                <option 
+                                <?php
+                                    if($resultbrand['brandId']==$result['brand_Id'])
+                                    {echo 'selected'; }
+                                ?>
+                                value="<?php echo $resultbrand['brandId']?>"><?php echo $resultbrand['brandName']?></option>
+                                <?php 
+                                        }
+                                   }
+                                   
+                                     ?>
+                               </Select>   
+            </td>
             </tr>
             <tr>
                 <td>Giá </td>
@@ -87,21 +121,26 @@
             <tr>
                 <td>ProductType</td>
                 <td>
-                    <select name="productType" id="selected">
-                        <option value="1">Nổi bật</option>
+                    <select name="productType" id="select" >
+                        <?php if($result['productType'] == 1){
+                        ?>
+                        <option selected value="1">Nổi bật</option>
                         <option value="0">Không nổi bật</option>
+                        <?php }else { ?>
+                            <option  value="1">Nổi bật</option>
+                            <option selected value="0">Không nổi bật</option>
+                            <?php }?>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="submit" name="submit" value="Thêm">
+                    <input type="submit" name="submit" value="Sửa">
                 </td>
             </tr>
-        </table>
-    
-    
+    </table>
+
         </form>
-        <?php }}?>
+        <?php ?>
     </div>
 </body>

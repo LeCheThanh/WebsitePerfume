@@ -78,18 +78,49 @@ Class productC{
         $file_size = $_FILES['productImage']['size'];
         $file_temp = $_FILES['productImage']['tmp_name'];
 
-        $div = explode('.', $file_name);
-        $file_ext = strtolower(end ($div)); 
+        $div = explode('.', $file_name);//explode tach chuoi file_name thanh` mang phan cach boi dau . 
+        $file_ext = strtolower(end ($div)); //strtolower de doi thanh chu thuong, end de tra ve phan tu sau dau cham
         $unique_image = substr(md5(time()), 0, 10).'.'. $file_ext;
         $uploaded_image = "uploads/product/".$unique_image;
         ////
-        if($productName=="" ||  $productDesc=="" || $category=="" ||$brand=="" ||$productPrice=="" ||$productType=="" ||  $file_name=="" ){
+        if($productName=="" ||  $productDesc=="" || $category=="" ||$brand=="" ||$productPrice=="" ||$productType=="" ){
             $arlet = "Không được để trống !!";
             return $arlet;
         }else{
-            move_uploaded_file($file_temp,$uploaded_image);
-            $query=" UPDATE `products`SET productName='$productName',productDesc='$productDesc',productImage='$unique_image',productStatus='$productStatus',category_id='$category',productType='$productType',productPrice='$productPrice',brand_Id='$brand'  WHERE productId = '$id'";
-            $result = $this->db->update($query);
+            //neu admin chon anh
+            if(!empty($file_name)){
+                if($file_size > 2* 1024 *1024) // 2 * 1024 * 1024 = 2 * 2^10 * 2^10 = 2 * 2^20 = 2097152 byte(2Mb)/
+                {
+                    $arlet = "ảnh không được quá 2MB";
+                    return $arlet;
+                }
+                elseif(in_array($file_ext, $permited)===false){
+                    $arlet = "chỉ cho phép ảnh có định dạng " . implode(', ', $permited);
+                    return $arlet;   
+                }  
+                move_uploaded_file($file_temp,$uploaded_image);
+                $query=" UPDATE `products`
+                SET productName='$productName',
+                productDesc='$productDesc',
+                productImage='$unique_image',
+                productStatus='$productStatus',
+                category_id='$category',
+                productType='$productType'
+                ,productPrice='$productPrice',
+                brand_Id='$brand'  WHERE productId = '$id'";
+                
+            //neu khong chon anh
+            }else{
+                $query=" UPDATE `products`
+                SET productName='$productName',
+                productDesc='$productDesc',
+                productStatus='$productStatus',
+                category_id='$category',
+                productType='$productType'
+                ,productPrice='$productPrice',
+                brand_Id='$brand'  WHERE productId = '$id'";
+            }
+            $result = $this->db->update($query); 
         }
         if($result!=false){
             $arlet = "Sửa thành công !!";
@@ -100,18 +131,18 @@ Class productC{
 
         }
     }
-//     public function deleteBrand($delBrand){
-//         $query=" DELETE  FROM  `brand` WHERE brandId ='$delBrand'";
-//         $result=$this->db->delete($query);
-//         if($result!=false){
-//             $arlet = "Xóa thành công !!";
-//             return $arlet;
-//         }else{
-//             $arlet= "Lỗi";
-//             return $arlet;
+    public function deleteProduct($id){
+        $query=" DELETE  FROM  `products` WHERE productId ='$id'";
+        $result=$this->db->delete($query);
+        if($result!=false){
+            $arlet = "Xóa thành công !!";
+            return $arlet;
+        }else{
+            $arlet= "Lỗi";
+            return $arlet;
 
-//         }
-//     }
+        }
+    }
 }
 
 ?>

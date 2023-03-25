@@ -5,6 +5,7 @@
     if($_SERVER['REQUEST_METHOD']==='POST'){
         $brandName = $_POST['brandName'];
         $brandDesc = $_POST['brandDesc'];
-        $insertBrand=$brand->insertBrand($brandName ,$brandDesc,$_FILES);
+        $brandImage=$_FILES['brandImage'];
+        $insertBrand=$brand->insertBrand($brandName ,$brandDesc, $brandImage);
     }
 ?>

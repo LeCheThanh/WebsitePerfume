@@ -9,20 +9,18 @@ include_once '../admin/uploadImage/ajaxupload.php';
 Class brandC{
     private $db;
     private $frm;
-    private $fileImage;
     public function __construct()
     {
-        $this->fileImage= new ImageUploader("uploads/brand/");
         $this->db= new Database(); 
         $this->frm= new Format();
     }
-    public function insertBrand($brandName, $brandDesc,$file){        
+    public function insertBrand($brandName, $brandDesc,$nameImage){        
         $brandName = $this->frm->validation($brandName);
         $brandDesc= $this->frm->validation($brandDesc);
         $brandName = mysqli_real_escape_string($this->db->link,$brandName);
         $brandDesc = mysqli_real_escape_string($this->db->link, $brandDesc);
-        $image =  $this->fileImage->uploadImage("imageField");
-        echo $image;
+        $uploader = new ImageUploader();
+        $path = $uploader->uploadImage($nameImage);
         // $image = $this->fileImage->uploadimage($brandImage);
         // if ($image === false) {
         //     echo json_encode(array(
@@ -40,16 +38,16 @@ Class brandC{
         // $file_ext = strtolower(end ($div)); 
         // $unique_image = substr(md5(time()), 0, 10).'.'. $file_ext;
         // $uploaded_image = "uploads/brand/" .$unique_image;
-        if(empty($brandName)|| empty($brandDesc ) ){
+        if(empty($brandName)|| empty($brandDesc )|| $path == false ){
 
             echo json_encode(array(
                 'status'=>0,
-                'message'=>'Chưa nhập đầy đủ thông tin'
+                'message'=>'Chưa nhập đầy đủ thông tin hoặc không uploads được ảnh'
             ));
             exit;
         }else{
             // move_uploaded_file($file_temp,$uploaded_image);
-            $query="INSERT INTO `brand` (brandName, brandDescription, brandImage) VALUES ('$brandName', '$brandDesc', '$this->fileImage')";
+            $query="INSERT INTO `brand` (brandName, brandDescription, brandImage) VALUES ('$brandName', '$brandDesc', '$path')";
             $result = $this->db->insert($query);
             if ($result) {
                 echo json_encode(array(

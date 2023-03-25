@@ -52,11 +52,11 @@ Class productC{
 
         }
     }
-//     public function showlistBrand(){
-//         $query=" SELECT * FROM  `brand` ORDER BY brandId DESC";
-//         $result = $this->db->select($query);
-//         return $result;
-//     }
+    public function showlistProduct(){
+        $query=" SELECT * FROM  `products` ORDER BY productId DESC";
+        $result = $this->db->select($query);
+        return $result;
+    }
 //     public function getbyId($id){
 //         $query=" SELECT * FROM  `brand` WHERE brandId='$id'";
 //         $result = $this->db->select($query);

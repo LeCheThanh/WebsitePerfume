@@ -1,11 +1,11 @@
 <?php
-include './include/header.php';
-include './include/slider.php';
+include './views/inc/header.php';
+include './views/inc/slider.php';
 ?>
 
 <div class="main">
 <h3>MAIN CONTENT</h3>
 </div>
 <?php
-include './include/footer.php';
+include './views/inc/footer.php';
 ?>

@@ -12,7 +12,7 @@ Class brandC{
     private $fileImage;
     public function __construct()
     {
-        $this->fileImage= new Uploads();
+        $this->fileImage= new ImageUploader("uploads/brand/");
         $this->db= new Database(); 
         $this->frm= new Format();
     }
@@ -21,6 +21,8 @@ Class brandC{
         $brandDesc= $this->frm->validation($brandDesc);
         $brandName = mysqli_real_escape_string($this->db->link,$brandName);
         $brandDesc = mysqli_real_escape_string($this->db->link, $brandDesc);
+        $image =  $this->fileImage->uploadImage("imageField");
+        echo $image;
         // $image = $this->fileImage->uploadimage($brandImage);
         // if ($image === false) {
         //     echo json_encode(array(
@@ -28,17 +30,17 @@ Class brandC{
         //         'message' => 'Lỗi khi upload ảnh'
         //     ));
         //     exit;
-        // }
-        $permited = array('jpg', 'jpeg', 'png', 'gif');
-        $file_name = $_FILES['brandImage']['name'];
-        $file_size = $_FILES['brandImage']['size'];
-        $file_temp = $_FILES['brandImage']['tmp_name'];
+        // // }
+        // $permited = array('jpg', 'jpeg', 'png', 'gif');
+        // $file_name = $_FILES['brandImage']['name'];
+        // $file_size = $_FILES['brandImage']['size'];
+        // $file_temp = $_FILES['brandImage']['tmp_name'];
 
-        $div = explode('.', $file_name);
-        $file_ext = strtolower(end ($div)); 
-        $unique_image = substr(md5(time()), 0, 10).'.'. $file_ext;
-        $uploaded_image = "uploads/brand/" .$unique_image;
-        if(empty($brandName)|| empty($brandDesc || !$file_name) ){
+        // $div = explode('.', $file_name);
+        // $file_ext = strtolower(end ($div)); 
+        // $unique_image = substr(md5(time()), 0, 10).'.'. $file_ext;
+        // $uploaded_image = "uploads/brand/" .$unique_image;
+        if(empty($brandName)|| empty($brandDesc ) ){
 
             echo json_encode(array(
                 'status'=>0,
@@ -46,8 +48,8 @@ Class brandC{
             ));
             exit;
         }else{
-            move_uploaded_file($file_temp,$uploaded_image);
-            $query="INSERT INTO `brand` (brandName, brandDescription, brandImage) VALUES ('$brandName', '$brandDesc', '$unique_image')";
+            // move_uploaded_file($file_temp,$uploaded_image);
+            $query="INSERT INTO `brand` (brandName, brandDescription, brandImage) VALUES ('$brandName', '$brandDesc', '$this->fileImage')";
             $result = $this->db->insert($query);
             if ($result) {
                 echo json_encode(array(

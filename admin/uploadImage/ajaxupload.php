@@ -1,76 +1,44 @@
+
 <?php
+class ImageUploader  {
+    private $targetDirectory;
+    private $allowedExtensions = array("jpg", "jpeg", "png", "gif");
 
-?>
-<?php
-Class Uploads{
-    ///UploadImage
-    // public function uploadimage($file){
-    //     if($file['name']!=''){
-    //         $extension = explode(".",$file['name']);
-    //             $file_extension = end($extension);
-    //             $allow_type= array('jpeg', 'jpg', 'png', 'gif', 'webp'); // valid extensions
-    //             if(in_array($file_extension,$allow_type)){
-    //                 $new_name=rand()."." .$file_extension;
-    //                 $path = 'uploads/brand/'.$new_name; // upload directory
-    //                 if(move_uploaded_file($file['tmp_name'],$path)){
-                       
-    //                     $json=json_encode(array(
-    //                         'status'=>1,
-    //                         'previewImage'=> $path,
-    //                         'message'=>'Thêm ảnh thành công'
-    //                     ));
-    //                     return false;
-    //                 }
-    //             }else{
-    //                 $json=json_encode(array(
-    //                     'status'=>0,
-    //                     'message'=>'chỉ nhận file ảnh JPG, PNG , WEBP'
-    //                 ));
-    //                 return false;
-    //             }
-    //     }else{
-    //         $json=json_encode(array(
-    //             'status'=>0,
-    //             'message'=>'Vui lòng chọn ảnh!'
-    //         ));
-    //         return false;
-    //     }
-    //     // echo $json;
-    //     }
-    // public function uploadimage($file){
-    //     if($file['name']!=''){
+    public function __construct($targetDirectory) {
+        $this->targetDirectory = $targetDirectory;
+    }
 
-    //         $extension = explode(".",$file['name']);
-    //             $file_extension = end($extension);
-    //             $allow_type= array('jpeg', 'jpg', 'png', 'gif', 'webp'); // valid extensions
-    //             if(in_array($file_extension,$allow_type)){
-    //                 $new_name=rand()."." .$file_extension;
-    //                 $path = 'uploads/brand/'.$new_name; // upload directory
-    //                 if(move_uploaded_file($file['tmp_name'],$path)){
-    //                     $json=json_encode(array(
-    //                         'status'=>1,
-    //                         'previewImage'=> $path,
-    //                         'message'=>'Thêm ảnh thành công'
-    //                     ));
-    //                     return $json;
-    //                 }
-    //             }else{
-    //                 $json=json_encode(array(
-    //                     'status'=>0,
-    //                     'message'=>'Chỉ nhận file ảnh JPG, PNG, WEBP'
-    //                 ));
-    //                 return $json;
-    //             }
-    //     }else{
-    //         $json=json_encode(array(
-    //             'status'=>0,
-    //             'message'=>'Vui lòng chọn ảnh!'
-    //         ));
-    //         return $json;
-    //     }
-    // } 
-    
+    public function uploadImage($fieldName) {
+        $targetFile = $this->targetDirectory . basename($_FILES[$fieldName]["name"]);
+        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
+        // Check if image file is a actual image or fake image
+        if (!is_uploaded_file($_FILES[$fieldName]["tmp_name"])) {
+            return "Error: File is not an image.";
+        }
+
+        // Check if file already exists
+        if (file_exists($targetFile)) {
+            return "Error: File already exists.";
+        }
+
+        // Check file size
+        if ($_FILES[$fieldName]["size"] > 500000) {
+            return "Error: File is too large.";
+        }
+
+        // Allow certain file formats
+        if (!in_array($imageFileType, $this->allowedExtensions)) {
+            return "Error: Only JPG, JPEG, PNG, and GIF files are allowed.";
+        }
+
+        // Upload file
+        if (move_uploaded_file($_FILES[$fieldName]["tmp_name"], $targetFile)) {
+            return "File has been uploaded successfully.";
+        } else {
+            return "Error: There was an error uploading your file.";
+        }
+    }
 }
 
 ?>

@@ -1,8 +1,8 @@
 <?php
     include '../libs/session.php';
     Session::checkLogin();
-    include '../libs/database.php';
-    include '../helpers/format.php';
+    include_once ( $filepath.'/../libs/database.php');
+    include_once  ($filepath.'/../helpers/format.php');
 ?>
 
 <?php

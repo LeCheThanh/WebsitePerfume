@@ -1,5 +1,5 @@
 <?php
-include_once 'libs/session.php';
+include 'libs/session.php';
 Session::init();
 ?>
 <?php

@@ -1,6 +1,7 @@
 <?php
-    include_once '../libs/database.php';
-    include_once '../helpers/format.php';
+    $filepath = realpath(dirname(__FILE__));
+    include_once ($filepath.'../libs/database.php');
+    include_once  ($filepath.'../helpers/format.php');
 ?>
 
 <?php

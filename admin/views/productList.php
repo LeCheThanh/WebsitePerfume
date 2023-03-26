@@ -47,13 +47,25 @@
                 ?>
 
             </td>
-            <td><?php echo $result['category_id'];?></td>
+            <td><?php
+            if(isset($catelist)){
+                while($resultcate=$catelist->fetch_assoc()){
+                    if($result['category_id']==$resultcate['cateId'])
+                    echo $resultcate['cateName'];
+                   } } ?>
+             </td>
             <td> <?php if($result['productType']==0){
                 echo'<p>Không nổi bật</p>';
                 }else {echo'<p>Nổi bật</p>';}
                 ?></td>
             <td><?php echo $result['productPrice'];?></td>
-            <td><?php echo $result['brand_Id'];?></td>
+            <td><?php
+            if(isset($brandlist)){
+                while($resultbrand=$brandlist->fetch_assoc()){
+                    if($result['brand_Id']==$resultbrand['brandId'])
+                    echo $resultbrand['brandName'];
+                   } } ?>
+            </td>
             <td><a href="productEdit.php?productId=<?php echo $result['productId']?>">Edit</a>|<a onclick="return confirm('Bạn chắc chắn muốn xóa?')" href="?delproductId=<?php echo $result['productId']?>">Delete</a></td>
         </tr>
         <?php }

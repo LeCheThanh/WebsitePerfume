@@ -11,6 +11,10 @@
         $product = new productC();
         $product->showlistProduct();
         $showlistProduct = $product->showlistProduct();
+        $brand=new brandC();
+        $brandlist=$brand->showlistBrand();
+        $cate=new categoryC();
+        $catelist=$cate->showlistCate();
         //Xoa product
         if(isset($_GET['delproductId']) ){
            $productId=$_GET['delproductId'];

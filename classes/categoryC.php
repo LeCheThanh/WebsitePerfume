@@ -1,9 +1,9 @@
 <?php
 
 use LDAP\Result;
-
-include_once '../libs/database.php';
-include_once '../helpers/format.php';
+    $filepath = realpath(dirname(__FILE__));
+    include_once ('../libs/database.php');
+    include_once  ('../helpers/format.php');
 ?>
 
 <?php

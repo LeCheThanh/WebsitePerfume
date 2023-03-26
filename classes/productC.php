@@ -143,6 +143,12 @@ Class productC{
 
         }
     }
+    // END BACKEND
+    public function getproductFeature(){
+        $query=" SELECT * FROM  `products` WHERE productType=1";
+        $result = $this->db->select($query);
+        return $result;
+    }
 }
 
 ?>

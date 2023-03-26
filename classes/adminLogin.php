@@ -1,6 +1,7 @@
 <?php
     include '../libs/session.php';
     Session::checkLogin();
+    $filepath = realpath(dirname(__FILE__));
     include_once ( $filepath.'/../libs/database.php');
     include_once  ($filepath.'/../helpers/format.php');
 ?>
@@ -56,12 +57,6 @@ Class adminLogin{
             exit;
         }
 
-    }
-    public function check_admin(){
-        
-    }
-    public function destroy_admin(){
-        
     }
 }
 

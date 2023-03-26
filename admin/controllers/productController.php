@@ -49,5 +49,14 @@
       
         require_once './views/productEdit.php';}}
     }
+    public function addproduct(){
+    $product = new productC();
+    if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
+      
+        $insertProduct=$product->insertProduct($_POST, $_FILES);
+    }
+        require_once './views/productAdd.php';
+
+    }
 }
 ?>

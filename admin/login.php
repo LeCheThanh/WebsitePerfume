@@ -26,14 +26,6 @@
 <main class="form-signin w-100 m-auto">
   <form id="login-form">  <!--action="login.php" method="post"-->
     <h1 class="h3 mb-3 fw-normal">LOGIN</h1>
-    <span>
-        <?php
-        if(isset($login_check)){
-            echo $login_check;
-        }
-        ?>
-
-    </span>
     <div class="form-floating">
       <input type="text" class="form-control" id="floatingInput" placeholder="User" name="adminUser">
       <label for="floatingInput">Username</label>

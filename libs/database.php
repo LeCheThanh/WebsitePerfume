@@ -1,6 +1,6 @@
 <?php
   $filepath = realpath(dirname(__FILE__));
-  include ('../config/config.php');
+  include ($filepath.'/../config/config.php');
 ?>
 <?php
 Class Database{

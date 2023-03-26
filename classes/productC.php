@@ -149,6 +149,20 @@ Class productC{
         $result = $this->db->select($query);
         return $result;
     }
+    public function getproductNew(){
+        $query=" SELECT * FROM  `products` order by productId desc LIMIT 6";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    public function getDetails($id){
+        $query=" SELECT products.*, categories.cateName, brand.brandName
+        FROM products INNER JOIN categories ON products.category_id = categories.cateId
+        INNER JOIN brand ON products.brand_Id = brand.brandId
+        WHERE productId ='$id'";
+        $result = $this->db->select($query);
+        return $result;
+
+    }
 }
 
 ?>

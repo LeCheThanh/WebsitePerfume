@@ -17,7 +17,6 @@ spl_autoload_register(function($className) {
     $pro = new productC();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,13 +40,13 @@ spl_autoload_register(function($className) {
   <!-- Themefisher Icon font -->
   <link rel="stylesheet" href="assets/font/style.css">
   <!-- bootstrap.min css -->
-  <link rel="stylesheet" href="assets/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
   
   <!-- Animate css -->
   <link rel="stylesheet" href="assets/animate.css">
   <!-- Slick Carousel -->
-  <link rel="stylesheet" href="assets/slick.css">
-  <link rel="stylesheet" href="assets/slick-theme.css">
+  <link rel="stylesheet" href="assets/slick/slick.css">
+  <link rel="stylesheet" href="assets/slick/slick-theme.css">
   
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="assets/style.css">

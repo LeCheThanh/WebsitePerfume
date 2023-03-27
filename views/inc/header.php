@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include 'libs/session.php';
 Session::init();
 ?>
@@ -38,7 +39,7 @@ spl_autoload_register(function($className) {
   <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
   
   <!-- Themefisher Icon font -->
-  <link rel="stylesheet" href="assets/font/style.css">
+  <link rel="stylesheet" href="assets/themefisher-font/style.css">
   <!-- bootstrap.min css -->
   <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
   

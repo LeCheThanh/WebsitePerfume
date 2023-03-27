@@ -7,6 +7,10 @@ include 'views/inc/header.php';
     echo "<script>window.location = '404.php'</script>";
 }else{
     $productId=$_GET['proId'];
+} 
+if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
+	$quantity = $_POST['quantity'];
+	$Addtocart = $cart->addtocart($productId,$quantity);
 }
 ?>
 <section class="single-product">
@@ -98,12 +102,7 @@ include 'views/inc/header.php';
 							<option>XL</option>
 						</select>
 					</div>
-					<div class="product-quantity">
-						<span>Quantity:</span>
-						<div class="product-quantity-slider">
-							<div class="input-group bootstrap-touchspin"><span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-down" type="button">-</button></span><span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span><input id="product-quantity" type="text" value="0" name="product-quantity" class="form-control" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span><span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-up" type="button">+</button></span></div>
-						</div>
-					</div>
+				
 					<div class="product-category">
 						<span>Danh mục:</span>
 						<span><a href="product-single.html"><p><?php echo $result['cateName']?></p></a></span>
@@ -112,9 +111,22 @@ include 'views/inc/header.php';
 						<span>Thương hiệu:</span>
 						<span><a href="product-single.html"><p><?php echo $result['brandName']?></p></a></span>
 					</div>
-
-					<a href="cart.html" class="btn btn-main mt-20">Thêm vào giỏ hàng</a>
+					<form action="" method="post">
+					<div class="product-quantity">
+						<span>Số lượng:</span>
+						<div class="product-quantity-slider">
+							<input type="number" name="quantity" min="1" value="1" style="width:50%;text-align:center;">
+						</div>
+					</div>
+						<!-- <a href="cart.php" class="btn btn-main mt-20">Thêm vào giỏ hàng</a> -->
+						<button type="submit" class="btn btn-main mt-20" name="submit" value="">Thêm vào giỏ hàng</button>
+					</form>
 				</div>
+				<?php
+				if(isset($Addtocart)){
+					echo $Addtocart;
+				}
+				?>
 			</div>
 		</div>
         <?php }}?>

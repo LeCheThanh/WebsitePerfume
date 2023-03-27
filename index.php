@@ -66,7 +66,7 @@ include 'views/inc/slider.php';
 							<div class="preview-meta">
 								<ul>
 									<li>
-										<span  data-toggle="modal" data-target="#product-modal">
+										<span  data-toggle="modal" data-target="#product-modal" data-product-id="<?php echo $result['productId']?>">
 											<i class="tf-ion-ios-search-strong"></i>
 										</span>
 									</li>
@@ -125,6 +125,7 @@ include 'views/inc/slider.php';
 							<h4><a href="product-single.html"><?php echo $result['productName']?></a></h4>
 							<p class="price"><?php echo $result['productPrice']." ".'VNĐ'?></p>
 						</div>
+						<a href="details.php?proId=<?php echo $result['productId']?>" class="btn btn-transparent">Chi tiết sản phẩm</a>
 					</div>
 				</div>
 				<?php	}} ?>
@@ -136,7 +137,8 @@ include 'views/inc/slider.php';
 				<i class="tf-ion-close"></i>
 			</button>
 			<?php
-			$getproduct = $pro->getproductFeature();
+			$proId = $_GET['proId'];
+			$getproduct = $pro->getbyId($proId );
 			if($getproduct){
 				while($result = $getproduct->fetch_assoc()){?>
 		  	<div class="modal-dialog " role="document">
@@ -199,3 +201,4 @@ Start Call To Action
 ==================================== -->
   </body>
   </html>
+  

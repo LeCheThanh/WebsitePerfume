@@ -17,6 +17,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
+				
 				<ol class="breadcrumb">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="shop.html">Shop</a></li>

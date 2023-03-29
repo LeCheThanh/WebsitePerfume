@@ -93,45 +93,47 @@ spl_autoload_register(function($className) {
 								class="tf-ion-android-cart"></i>Cart</a>
 						<div class="dropdown-menu cart-dropdown">
 							<!-- Cart Item -->
-							<div class="media">
-								<a class="pull-left" href="#!">
-									<img class="media-object" src="images/shop/cart/cart-1.jpg" alt="image" />
-								</a>
-								<div class="media-body">
-									<h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
-									<div class="cart-price">
-										<span>1 x</span>
-										<span>1250.00</span>
-									</div>
-									<h5><strong>$1200</strong></h5>
-								</div>
-								<a href="#!" class="remove"><i class="tf-ion-close"></i></a>
-							</div><!-- / Cart Item -->
-							<!-- Cart Item -->
-							<div class="media">
-								<a class="pull-left" href="#!">
-									<img class="media-object" src="images/shop/cart/cart-2.jpg" alt="image" />
-								</a>
-								<div class="media-body">
-									<h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
-									<div class="cart-price">
-										<span>1 x</span>
-										<span>1250.00</span>
-									</div>
-									<h5><strong>$1200</strong></h5>
-								</div>
-								<a href="#!" class="remove"><i class="tf-ion-close"></i></a>
-							</div><!-- / Cart Item -->
+							<?php $getcart= $cart->getProductCart();
+								if($getcart){
+									while($result = $getcart->fetch_assoc()){
 
+							
+							?>
+							<div class="media">
+								<a class="pull-left" href="#!">
+									<img class="media-object" src="admin/uploads/product/<?php echo $result['image']?>" alt="image" />
+								</a>
+								<div class="media-body">
+									<h4 class="media-heading"><a href="#!"><?php echo $result['productName']?></a></h4>
+									<div class="cart-price">
+										<span><?php echo $result['quantity']?>x</span>
+										<span><?php echo $result['price']." "."VNĐ"?></span>
+									</div>
+									<h5><strong><?php $total= $result['price'] * $result['quantity']; echo $total." "."VNĐ"?></strong></h5>
+								</div>
+								<a href="#!" class="remove"><i class="tf-ion-close"></i></a>
+							</div>
+							<?php
+								}
+							}?><!-- / Cart Item -->
+							<!-- / Cart Item -->
+							<?php if($getcart){
+								$total= Session::get("total");
+
+								?>
+								
 							<div class="cart-summary">
-								<span>Total</span>
-								<span class="total-price">$1799.00</span>
+								<span>Tổng cộng</span>
+								<span class="total-price"><?php echo $total." "."VNĐ";?></span>
 							</div>
 							<ul class="text-center cart-buttons">
-								<li><a href="cart.html" class="btn btn-small">View Cart</a></li>
-								<li><a href="checkout.html" class="btn btn-small btn-solid-border">Checkout</a></li>
+								<li><a href="cart.html" class="btn btn-small btn-solid-border">Xem giỏ hàng</a></li>
+								<li><a href="checkout.html" class="btn btn-small btn-solid-border">Thanh toán</a></li>
 							</ul>
 						</div>
+							<?php }else{
+								echo'Giỏ hàng trống!';
+							}?>
 
 					</li><!-- / Cart -->
 

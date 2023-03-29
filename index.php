@@ -127,50 +127,45 @@ include 'views/inc/slider.php';
 						</div>
 						<a href="details.php?proId=<?php echo $result['productId']?>" class="btn btn-transparent">Chi tiết sản phẩm</a>
 					</div>
+			
 				</div>
 				<?php	}} ?>
 			</div>
 		
-		<!-- Modal -->
-		<div class="modal product-modal fade" id="product-modal">
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<i class="tf-ion-close"></i>
-			</button>
-			<?php
-			$proId = $_GET['proId'];
-			$getproduct = $pro->getbyId($proId );
-			if($getproduct){
-				while($result = $getproduct->fetch_assoc()){?>
-		  	<div class="modal-dialog " role="document">
-		    	<div class="modal-content">
-			      	<div class="modal-body">
-			        	<div class="row">
-			        		<div class="col-md-8 col-sm-6 col-xs-12">
-			        			<div class="modal-image">
-				        			<img class="img-responsive" src="admin/uploads/product/<?php echo $result['productImage']?>" alt="product-img" alt="product-img" />
-			        			</div>
-			        		</div>
-			        		<div class="col-md-4 col-sm-6 col-xs-12">
-			        			<div class="product-short-details">
-			        				<h2 class="product-title"><?php echo $result['productName']?></h2>
-			        				<p class="product-price"><?php echo $result['productPrice']." ".'VNĐ'?></p>
-			        				<p class="product-short-description">
-									<?php echo $result['productDesc']?>
-			        				</p>
-			        				<a href="cart.html" class="btn btn-main">Thêm vào giỏ hàng</a>
-			        				<a href="details.php?proId=<?php echo $result['productId']?>" class="btn btn-transparent">Chi tiết sản phẩm</a>
-			        			</div>
-			        		</div>
-			        	</div>
-			        </div>
-		    	</div>
-		  	</div>
-			<?php }}?>
-		</div><!-- /.modal -->
-
+		
 		</div>
 	</div>
 </section>
+		<!-- Modal -->
+		<div class="modal product-modal fade" id="product-modal">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<i class="tf-ion-close"></i>
+						</button>
+						<div class="modal-dialog " role="document">
+							<div class="modal-content">
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-md-8 col-sm-6 col-xs-12">
+											<div class="modal-image">
+												<img class="img-responsive" src="admin/uploads/product/<?php echo $result['productImage']?>" alt="product-img" alt="product-img" />
+											</div>
+										</div>
+										<div class="col-md-4 col-sm-6 col-xs-12">
+											<div class="product-short-details">
+												<h2 class="product-title"><?php echo $result['productName']?></h2>
+												<p class="product-price"><?php echo $result['productPrice']." ".'VNĐ'?></p>
+												<p class="product-short-description">
+												<?php echo $result['productDesc']?>
+												</p>
+												<a href="cart.html" class="btn btn-main">Thêm vào giỏ hàng</a>
+												<a href="details.php?proId=<?php echo $result['productId']?>" class="btn btn-transparent">Chi tiết sản phẩm</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div><!-- /.modal -->
 
 <?php
 include 'views/inc/footer.php';

@@ -2,6 +2,10 @@
 include 'views/inc/header.php';
 ?>
 <?php
+ if(isset($_GET['cartId']) ){
+  $delId=$_GET['cartId'];
+  $delCart= $cart->deleteProCart($delId);
+  }
   if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
     $cartId = $_POST['cartId'];
     $quantity = $_POST['quantity'];
@@ -30,7 +34,7 @@ include 'views/inc/header.php';
         <div class="col-md-8 col-md-offset-2">
           <div class="block">
             <div class="product-list">
-              <form method="post">
+             
                 <table class="table">
                   <?php if(isset($updatequantityCart)){
                     echo $updatequantityCart;
@@ -38,21 +42,21 @@ include 'views/inc/header.php';
                   ?>
                   <thead>
                     <tr>
-                      <th class="">Item Name</th>
-                      <th class="">Item Price</th>
-                      <th class="">Quantity</th>
-                      <th class="">Total Price</th>
-                      <th class="">Actions</th>
+                      <th class="">Sản phẩm</th>
+                      <th class="">Giá</th>
+                      <th class="">Số lượng</th>
+                      <th class="">Thành tiền</th>
+                      <th class=""></th>
                     </tr>
                   </thead>
+                  <tbody>
                   <?php
                     $getcart = $cart->getProductCart();
                     if($getcart){
                         $totalCart=0;
+                       
                         while ($result=$getcart->fetch_assoc()){
                     ?>
-                  <tbody>
-                    
                     <tr class="">
                       <td class="">
                         <div class="product-info">
@@ -61,29 +65,40 @@ include 'views/inc/header.php';
                         </div>
                       </td>
                       <td class=""><?php echo $result['price']." "."VNĐ"?></td>
-                      <input type="hidden" name="cartId"value="<?php echo $result['cartId']?>">
-                      <td class=""><input name="quantity" type="number" min="1" value="<?php echo $result['quantity']?>" style="width:50%;text-align:center;"></td>
+                      <form method="post">
+                      <td class="">
+                      <input name="quantity" type="number" min="1" value="<?php echo $result['quantity']?>" style="width:50%;text-align:center;">
+                      <input type="hidden" name="cartId" value="<?php echo $result['cartId']?>">
+                      <button type="submit" name="submit">Cập nhật</button>
+                      </td>
+                      </form>
                       <td class=""><?php $total= $result['price'] * $result['quantity']; echo $total." "."VNĐ"?></td>
                       <td class="">
-                      <button type="submit" name="submit">Cập nhật</button>
-                      <button class="product-remove" href="#!">Xóa</button>
+                     
+                      <button class="product-remove"><a onclick="return confirm('Bạn chắc chắn muốn xóa?')" href="?cartId=<?php echo $result['cartId']?>">Xóa</a></button>
                       </td>
                     </tr>
     
+                    <?php
+                       $totalCart += $total;
+                            }
+                          }?>
+                      
                   </tbody>
-                  <?php
-                     $totalCart += $total;
-                          }
-                        }?>
-                    
                 </table>
                 <hr style="border:.2px solid #ccc">
-                <table>
-                    <th>Total: </th>
-                    <td class="pull-right"><?php echo $totalCart; ?></td>
-                </table>
-                <a href="checkout.html" class="btn btn-main pull-right">Checkout</a>
-              </form>
+                <?php if($getcart){?>
+                  <tr>
+                    <th> <b>Tổng tiền:</b>  </th>
+                    <td><?php echo  $totalCart.' '.'VNĐ';  Session::set("total",$totalCart);?></td>
+                  </tr>
+                    <?php 
+                    }else{
+                  echo '<p>Giỏ hàng đang trống!</p>';
+                }?>
+                
+                <a href="checkout.html" class="btn btn-submit btn-solid-border pull-right"><b>Thanh toán</b></a>
+                <a href="checkout.html" class="btn btn-submit btn-solid-border pull-right"><b>Tiếp tục mua sắm</b></a>
             </div>
           </div>
         </div>

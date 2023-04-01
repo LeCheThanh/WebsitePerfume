@@ -87,6 +87,12 @@ Class cartModel{
     //     $result=$this->db->select($query);
     //     return $result;
     // }
+    public function delAllCart(){
+        $sId = session_id();
+        $query = "DELETE  FROM cart WHERE sid = '$sId' ";
+        $result=$this->db->delete($query);
+        return $result;
+    }
 }
 
 ?>

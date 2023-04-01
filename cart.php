@@ -103,7 +103,7 @@ if(!isset($_GET['id'])){
                 }?>
                 
                 <a href="checkout.html" class="btn btn-submit btn-solid-border pull-right"><b>Thanh toán</b></a>
-                <a href="checkout.html" class="btn btn-submit btn-solid-border pull-right"><b>Tiếp tục mua sắm</b></a>
+                <a href="shop.php" class="btn btn-submit btn-solid-border pull-right"><b>Tiếp tục mua sắm</b></a>
             </div>
           </div>
         </div>

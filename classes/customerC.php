@@ -92,8 +92,8 @@ Class customerC{
             $value = $result->fetch_assoc();
             if($result!=false){
                 Session::set('customer_login',true);
-                Session::set('customer_id',$value['Id']);
-                Session::set('customer_login',$value['Name']);
+                Session::set('customer_id',$value['customerId']);
+                Session::set('customer_name',$value['Name']);
                 header('location: index.php');
                 $arlet = "Đăng nhập thành công !!";
                 return $arlet;
@@ -106,8 +106,14 @@ Class customerC{
                 $arlet = "Tên đăng nhập hoặc mật khẩu không hợp lệ !!";
                 return $arlet;
              }
+          }
+     }
+    public function getallCustomer($id) {
+        $query ="SELECT * FROM customers WHERE customerId= '$id'";
+        $result=$this->db->select($query);
+        return $result;
+    
     }
-}
 }
 
 ?>

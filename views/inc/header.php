@@ -93,8 +93,8 @@ spl_autoload_register(function($className) {
 				<!-- Cart -->
 				<ul class="top-menu text-right list-inline">
 					<li class="dropdown cart-nav dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-						<i class="fa-cart-shopping"></i></i>Cart</a>
+						<a href="" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+						<i class="fa-cart-shopping"></i><a href="cart.php">Cart</a></a>
 						<div class="dropdown-menu cart-dropdown">
 							<!-- Cart Item -->
 							<?php $getcart= $cart->getProductCart();
@@ -154,6 +154,12 @@ spl_autoload_register(function($className) {
 
 					<!-- Languages -->
 					<li class="dropdown search dropdown-slide">
+						<?php
+						if(isset($_GET['customerId'])){
+							$delCart=$cart->delAllCart();
+							Session::destroy();
+						}
+						?>
 						<a href="login.php">USER</a>
 						<div class="dropdown-menu">
 							<?php $login_check= Session::get('customer_login');
@@ -162,16 +168,19 @@ spl_autoload_register(function($className) {
 								<!-- Basic -->
 								<div class="col-lg-12 col-md-12 mb-sm-6">
 									<ul>
-									<li><a href="login.html">Đăng nhập</a></li>
+									<li><a href="login.php">Đăng nhập</a></li>
 									</ul>
 								</div>
-								<?php }else{?>
+								<?php }else{?>			
 									<div class="col-lg-12 col-md-12 mb-sm-6">
 									<ul>
-									<li><a href="login.html">Đăng xuất</a></li>
+									<li><a href="profile.php">Thông tin tài khoản</a></li>
+									<hr>
+									<li><a href="?customerId=<?php echo Session::get('customer_id')?>">Đăng xuất</a></li>
 									</ul>
 								</div>
 								<?php }?>
+							</div>
 					</li><!-- / Languages -->
 
 				</ul><!-- / .nav .navbar-nav .navbar-right -->

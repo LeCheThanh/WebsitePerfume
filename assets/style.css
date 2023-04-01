@@ -67,7 +67,7 @@ body {
 p {
   font-family: "Poppins", sans-serif;
   color: #000;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -2700,7 +2700,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 .brand{
   margin:10px 0;
 }
-.product-category p{
+.product-category.index p{
   color: #fff;
 }
 /*# sourceMappingURL=style.css.map */

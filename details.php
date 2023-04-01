@@ -92,7 +92,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
 					<p class="product-price"><?php echo $result['productPrice']?></p>
 					
 					<p class="product-description mt-20">
-                    <?php echo $fm->textShorten($result['productDesc'],130)?>
+                    <?php echo $fm->textShorten($result['productDesc'],200)?>
 					</p>
 					<div class="product-size">
 						<span>Size:</span>

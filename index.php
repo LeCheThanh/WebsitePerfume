@@ -30,7 +30,7 @@ include 'views/inc/slider.php';
 	</div>
 </section> -->
 
-<section class="product-category section">
+<section class="product-category index section">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -46,7 +46,7 @@ include 'views/inc/slider.php';
 
 			?>
 				<div class="category-box">
-					<a href="#!">
+					<a href="productByCate.php?cateId=<?php echo $result['cateId'];?>">
 						<img src="admin/uploads/category/<?php echo $result['Image'];?>" alt="" />
 						<div class="content">
 							<h3><?php echo $result['cateName'];?></h3>
@@ -73,7 +73,7 @@ include 'views/inc/slider.php';
 			
 			<div class="col-md-6">
 				<div class="category-box category-box-2">
-					<a href="#!">
+					<a href="productByCate.php?cateId=<?php echo $result2['cateId'];?>">
 						<img src="admin/uploads/category/pexels-ron-lach-8624586.jpg" alt="" />
 						<div class="content">
 						<h3><?php echo $result2['cateName'];?></h3>
@@ -107,7 +107,7 @@ include 'views/inc/slider.php';
 							<div class="preview-meta">
 								<ul>
 									<li>
-										<span  data-toggle="modal" data-target="#product-modal-<?php echo $result['productId']; ?>" data-product-id="<?php echo $result['productId']?>">
+										<span  data-toggle="modal" data-target="#product-modal-<?php echo $result['productId']; ?>">
 											<i class="tf-ion-ios-search-strong"></i>
 										</span>
 									</li>

@@ -96,6 +96,17 @@ Class categoryC{
         $result = $this->db->select($query);
         return $result;
     }
+    public function getproductByCate($cateId){
+        $query=" SELECT * FROM  `products` WHERE category_id='$cateId'";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    public function getCateName($cateId){
+        $query=" SELECT products.*,categories.cateName, categories.cateId 
+        FROM  products, categories Where products.category_id=categories.cateId and products.category_id=$cateId";
+        $result = $this->db->select($query);
+        return $result;
+    }
 }
 
 ?>

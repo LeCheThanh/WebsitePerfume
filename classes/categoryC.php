@@ -83,6 +83,19 @@ Class categoryC{
 
         }
     }
+    //endBackend
+    //FrotEnd
+    public function showlistCateFront(){
+        $query=" SELECT * FROM  `categories` ORDER BY cateId DESC LIMIT 2";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    public function showlistCateUni(){
+        $unisex="Nước hoa unisex";
+        $query=" SELECT * FROM  `categories` WHERE cateName ='$unisex'";
+        $result = $this->db->select($query);
+        return $result;
+    }
 }
 
 ?>

@@ -5,3 +5,6 @@ include './inc/header.php';
 <?php
 include './inc/slidebar.php';
 ?>
+<?php
+include './inc/footer.php';
+?>

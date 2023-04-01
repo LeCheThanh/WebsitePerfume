@@ -63,7 +63,7 @@ spl_autoload_register(function($className) {
 			<div class="col-md-4 col-xs-12 col-sm-4">
 				<div class="contact-number">
 					<i class="tf-ion-ios-telephone"></i>
-					<span>0129- 12323-123123</span>
+					<span>+84 784846464</span>
 				</div>
 			</div>
 			<div class="col-md-4 col-xs-12 col-sm-4">
@@ -149,13 +149,8 @@ spl_autoload_register(function($className) {
 					</li><!-- / Search -->
 
 					<!-- Languages -->
-					<li class="commonSelect">
-						<select class="form-control">
-							<option>EN</option>
-							<option>DE</option>
-							<option>FR</option>
-							<option>ES</option>
-						</select>
+					<li class="">
+						<a href="">USER</a>
 					</li><!-- / Languages -->
 
 				</ul><!-- / .nav .navbar-nav .navbar-right -->

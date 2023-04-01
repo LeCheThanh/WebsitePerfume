@@ -3,45 +3,86 @@ include 'views/inc/header.php';
 include 'views/inc/slider.php';
 ?>
 
+
+<!-- <section class="section brand bg-gray">
+	<div class="container">
+		<div class="row">
+			<div class="title">
+				<h2>Thương hiệu</h2>
+			</div>
+		</div>
+		<div class="row">
+		<div class="col-md-3 brand">
+			<a href=""><img src="admin/uploads/brand/nuoc-hoa-dior.png" alt="brandImage" width="120px" style="border:1px solid;border-radius:10%;"></a>
+		</div>
+		<div class="col-md-3 brand">
+			<a href=""><img src="admin/uploads/brand/nuoc-hoa-dior.png" alt="brandImage" width="120px" style="border:1px solid;border-radius:10%;"></a>
+		</div><div class="col-md-3 brand">
+			<a href=""><img src="admin/uploads/brand/nuoc-hoa-dior.png" alt="brandImage" width="120px" style="border:1px solid;border-radius:10%;"></a>
+		</div><div class="col-md-3 brand">
+			<a href=""><img src="admin/uploads/brand/nuoc-hoa-dior.png" alt="brandImage" width="120px" style="border:1px solid;border-radius:10%;"></a>
+		</div><div class="col-md-3 brand">
+			<a href=""><img src="admin/uploads/brand/nuoc-hoa-dior.png" alt="brandImage" width="120px" style="border:1px solid;border-radius:10%;"></a>
+		</div>
+		</div>
+		
+		
+	</div>
+</section> -->
+
 <section class="product-category section">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="title text-center">
-					<h2>Product Category</h2>
+					<h2>Nước hoa theo giới tính</h2>
 				</div>
 			</div>
+			
 			<div class="col-md-6">
+			<?php $getcate = $cate->showlistCateFront();
+				if($getcate){
+					while($result=$getcate->fetch_assoc()){
+
+			?>
 				<div class="category-box">
 					<a href="#!">
-						<img src="images/shop/category/category-1.jpg" alt="" />
+						<img src="admin/uploads/category/<?php echo $result['Image'];?>" alt="" />
 						<div class="content">
-							<h3>Clothes Sales</h3>
-							<p>Shop New Season Clothing</p>
+							<h3><?php echo $result['cateName'];?></h3>
+							<p><?php echo $result['cateDescription'];?></p>
 						</div>
 					</a>	
 				</div>
-				<div class="category-box">
+				<?php 	}
+				}?>
+				<!-- <div class="category-box">
 					<a href="#!">
-						<img src="images/shop/category/category-2.jpg" alt="" />
+						<img src="admin/uploads/category/pexels-valeria-boltneva-9957555.jpg" alt="" />
 						<div class="content">
-							<h3>Smart Casuals</h3>
-							<p>Get Wide Range Selection</p>
+							<h3>Nước hoa nữ</h3>
+							<p>Nước hoa nữ, tinh tế, sang trọng</p>
 						</div>
 					</a>	
-				</div>
+				</div>-->
 			</div>
+			<?php $cateuni= $cate->showlistCateUni();
+			if($cateuni) { 
+				$result2=$cateuni->fetch_assoc();
+				?>
+			
 			<div class="col-md-6">
 				<div class="category-box category-box-2">
 					<a href="#!">
-						<img src="images/shop/category/category-3.jpg" alt="" />
+						<img src="admin/uploads/category/pexels-ron-lach-8624586.jpg" alt="" />
 						<div class="content">
-							<h3>Jewellery</h3>
-							<p>Special Design Comes First</p>
+						<h3><?php echo $result2['cateName'];?></h3>
+							<p><?php echo $result2['cateDescription'];?></p>
 						</div>
 					</a>	
 				</div>
-			</div>
+			</div> 
+		<?php	} ?>
 		</div>
 	</div>
 </section>
@@ -66,7 +107,7 @@ include 'views/inc/slider.php';
 							<div class="preview-meta">
 								<ul>
 									<li>
-										<span  data-toggle="modal" data-target="#product-modal" data-product-id="<?php echo $result['productId']?>">
+										<span  data-toggle="modal" data-target="#product-modal-<?php echo $result['productId']; ?>" data-product-id="<?php echo $result['productId']?>">
 											<i class="tf-ion-ios-search-strong"></i>
 										</span>
 									</li>
@@ -85,6 +126,45 @@ include 'views/inc/slider.php';
 						</div>
 					</div>
 				</div>
+				<?php
+				if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
+				$Addtocart = $cart->addtocart($result['productId'],1);
+					}
+					?>
+				<div class="modal product-modal fade" id="product-modal-<?php echo $result['productId']; ?>">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<i class="tf-ion-close"></i>
+						</button>
+						<div class="modal-dialog " role="document">
+							<div class="modal-content">
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-md-8 col-sm-6 col-xs-12">
+											<div class="modal-image">
+												<img class="img-responsive" src="admin/uploads/product/<?php echo $result['productImage']?>" alt="product-img" alt="product-img" />
+											</div>
+										</div>
+										<div class="col-md-4 col-sm-6 col-xs-12">
+											<div class="product-short-details">
+												<h2 class="product-title"><?php echo $result['productName']?></h2>
+												<p class="product-price"><?php echo $result['productPrice']." ".'VNĐ'?></p>
+												<p class="product-short-description">
+												<?php echo $result['productDesc']?>
+												</p>
+												<!-- <a href="cart.html" class="btn btn-main">Thêm vào giỏ hàng</a> -->
+												<form method="post">
+												<button name="submit "class="btn btn-main">Thêm vào giỏ hàng</button>
+												</form>
+
+												<a href="details.php?proId=<?php echo $result['productId']?>" class="btn btn-transparent">Chi tiết sản phẩm</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div><!-- /.modal -->
+
 				<?php	}} ?>
 			</div>
 			
@@ -108,7 +188,7 @@ include 'views/inc/slider.php';
 							<div class="preview-meta">
 								<ul>
 									<li>
-										<span  data-toggle="modal" data-target="#product-modal">
+										<span  data-toggle="modal" data-target="#product-modal-<?php echo $result['productId']; ?>">
 											<i class="tf-ion-ios-search-strong"></i>
 										</span>
 									</li>
@@ -129,15 +209,13 @@ include 'views/inc/slider.php';
 					</div>
 			
 				</div>
-				<?php	}} ?>
-			</div>
-		
-		
-		</div>
-	</div>
-</section>
-		<!-- Modal -->
-		<div class="modal product-modal fade" id="product-modal">
+				<!-- Modal -->
+				<?php
+				if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
+				$Addtocart = $cart->addtocart($result['productId'],1);
+					}
+					?>
+						<div class="modal product-modal fade" id="product-modal-<?php echo $result['productId']; ?>">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<i class="tf-ion-close"></i>
 						</button>
@@ -157,7 +235,9 @@ include 'views/inc/slider.php';
 												<p class="product-short-description">
 												<?php echo $result['productDesc']?>
 												</p>
-												<a href="cart.html" class="btn btn-main">Thêm vào giỏ hàng</a>
+												<form method="post">
+												<button name="submit "class="btn btn-main">Thêm vào giỏ hàng</button>
+												</form>
 												<a href="details.php?proId=<?php echo $result['productId']?>" class="btn btn-transparent">Chi tiết sản phẩm</a>
 											</div>
 										</div>
@@ -167,6 +247,24 @@ include 'views/inc/slider.php';
 						</div>
 					</div><!-- /.modal -->
 
+				<?php	}} ?>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- END PRODUCT -->
+<!-- Policy -->
+<section class="section instagram-feed">
+	<div class="container">
+		<div class="row">
+			<div class="title">
+				<h2>Tại sao chọn chúng tôi</h2>
+			</div>
+		</div>
+	
+	</div>
+</section>
+		
 <?php
 include 'views/inc/footer.php';
 ?> 

@@ -12,6 +12,11 @@ include 'views/inc/header.php';
     $updatequantityCart = $cart->updatequantityCart($quantity,$cartId);
   }
 ?>
+<?php
+if(!isset($_GET['id'])){
+  echo "<meta http-equiv='refresh' content='0;URL=?id=live'>";
+}
+?>
 <section class="page-header">
 	<div class="container">
 		<div class="row">

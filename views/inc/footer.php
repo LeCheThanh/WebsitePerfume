@@ -39,7 +39,7 @@
 					</li>
 				</ul>
                 <hr style="color: black; border: 1px solid;">
-				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
+				<span class="copyright-text">Copyright &copy;2023 | Che Thanh</span>
 			</div>
 		</div>
 	</div>

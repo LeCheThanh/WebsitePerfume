@@ -145,7 +145,7 @@ Class productC{
     }
     // END BACKEND
     public function getproductFeature(){
-        $query=" SELECT * FROM  `products` WHERE productType=1";
+        $query=" SELECT * FROM  `products` WHERE productType=1 LIMIT 3";
         $result = $this->db->select($query);
         return $result;
     }

@@ -14,17 +14,18 @@ if($login_check==false){
 // }else{
 //     $productId=$_GET['proId'];
 // } 
-// if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
-// 	$quantity = $_POST['quantity'];
-// 	$Addtocart = $cart->addtocart($productId,$quantity);
-// }
+  $id=Session::get('customer_id');
+if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
+	
+	$updateCustomer = $cs->updateCustomer($id,$_POST);
+}
 ?>
 <section class="page-header">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="content">
-                             <h1 class="page-name">Thông tin tài khoản</h1>
+                             <h1 class="page-name">Cập nhật thông tin tài khoản</h1>
                                     <ol class="breadcrumb">
                             </ol>
                         </div>
@@ -35,8 +36,11 @@ if($login_check==false){
 <section class="single-product">
 	<div class="container">
 		<div class="row">
-            
+            <form action="" method="post">
             <table class="table table-bordered table-dark">
+            <?php if(isset($updateCustomer)) {
+                 echo'<thead colspan="4">'.$updateCustomer.'</thead>';
+               }?>
             <?php
                 $id=Session::get('customer_id');
                 $getcustomer = $cs->getallCustomer($id);
@@ -50,17 +54,18 @@ if($login_check==false){
                     <th>Email</th>
                 </thead>
                 <tbody>
-                    <td><?php echo $result['Name'];?></td>
-                    <td><?php echo $result['Address'];?></td>
-                    <td><?php echo $result['Phone'];?></td>
-                    <td><?php echo $result['Email'];?></td>
+                    <td><input type="text" name="name" value="  <?php echo $result['Name'];?>">
+                    <td><input type="text" name="address" value="  <?php echo $result['Address'];?>">
+                    <td><input type="text" name="phone" value="  <?php echo $result['Phone'];?>">
+                    <td><input type="text" name="email" value="  <?php echo $result['Email'];?>">
               
                 </tbody>
-                <td colspan="4"><a href="editProfile.php"  class="btn btn-submit btn-solid-border pull-right">Cập nhật thông tin</a></td>
+                <td colspan="4" ><input type="submit" name="submit" value="Cập nhật"  class="btn btn-submit btn-solid-border pull-right"></input></td>
                 <?php     }
                 }
                 ?>
             </table>
+            </form>
             </div>
 		
   	</div>

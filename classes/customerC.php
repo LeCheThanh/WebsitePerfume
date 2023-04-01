@@ -20,11 +20,11 @@ Class customerC{
         $username = mysqli_real_escape_string($this->db->link,$data['username']);
         $email = mysqli_real_escape_string($this->db->link,$data['email']);
         $name = mysqli_real_escape_string($this->db->link,$data['name']);
-        $password = mysqli_real_escape_string($this->db->link,$data['password']);
-        $confirm_password = mysqli_real_escape_string($this->db->link,$data['confirm-password']);
+        $password = mysqli_real_escape_string($this->db->link, md5($data['password']));
+        $confirm_password = mysqli_real_escape_string($this->db->link,md5($data['confirm-password']));
         $address = mysqli_real_escape_string($this->db->link,$data['address']);
         $phone = mysqli_real_escape_string($this->db->link,$data['phone']);
-        
+
     if($username=="" ||  $password=="" || $email=="" ||$address=="" ||$phone=="" ){
             $arlet = "Không được để trống !!";
             return $arlet;
@@ -34,7 +34,7 @@ Class customerC{
 
             // ));
             // exit();
-    }elseif($password!= $confirm_password){
+    }elseif($password!=$confirm_password){
         $arlet = "Mật Khẩu không khớp";
             return $arlet;
         // echo json_encode(array(
@@ -77,6 +77,36 @@ Class customerC{
         }
     }
     
+}
+    public function loginCustomer($data){
+        $password = mysqli_real_escape_string($this->db->link, md5($data['password']));
+        $username = mysqli_real_escape_string($this->db->link,$data['username']);
+        
+        if($username=="" ||  $password==""){
+            $arlet = "Tên đăng nhập và mật khẩu đang trống !!";
+            return $arlet;   
+        }else{
+
+            $check_customer = "SELECT * FROM customers WHERE Username = '$username' and Password = '$password'";
+            $result = $this->db->select($check_customer);
+            $value = $result->fetch_assoc();
+            if($result!=false){
+                Session::set('customer_login',true);
+                Session::set('customer_id',$value['Id']);
+                Session::set('customer_login',$value['Name']);
+                header('location: index.php');
+                $arlet = "Đăng nhập thành công !!";
+                return $arlet;
+                // echo json_encode(array(
+                //     'status'=>0,
+                //     'message'=>'Username đã tồn tại !!!!'
+    
+                // ));
+             }  else{
+                $arlet = "Tên đăng nhập hoặc mật khẩu không hợp lệ !!";
+                return $arlet;
+             }
+    }
 }
 }
 

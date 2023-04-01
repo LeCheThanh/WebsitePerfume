@@ -26,32 +26,35 @@ spl_autoload_register(function($className) {
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>Aviato | E-commerce template</title>
+  <title>LEMON | PERFUME</title>
 
   <!-- Mobile Specific Metas
   ================================================== -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="Construction Html5 Template">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <meta name="author" content="Themefisher">
   <meta name="generator" content="Themefisher Constra HTML Template v1.0">
-  
+   -->
   <!-- Favicon -->
-  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
-  
+  <!-- <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" /> -->
+
   <!-- Themefisher Icon font -->
-  <link rel="stylesheet" href="assets/themefisher-font/style.css">
+  <!-- <link rel="stylesheet" href="assets/themefisher-font/style.css"> -->
+<!-- FONT AWESOME CDN -->
+
+<link rel="stylesheet" href="../../assets/font/fontawesome-free-6.4.0/css/all.min.css">
   <!-- bootstrap.min css -->
-  <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/bootstrap/bootstrap.min.css">
   
   <!-- Animate css -->
-  <link rel="stylesheet" href="assets/animate.css">
+  <link rel="stylesheet" href="../../assets/animate/animate.css">
   <!-- Slick Carousel -->
-  <link rel="stylesheet" href="assets/slick/slick.css">
-  <link rel="stylesheet" href="assets/slick/slick-theme.css">
+  <link rel="stylesheet" href="../../assets/slick/slick.css">
+  <link rel="stylesheet" href="../../assets/slick/slick-theme.css">
   
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="../../assets/style.css">
 
 </head>
 
@@ -70,7 +73,7 @@ spl_autoload_register(function($className) {
 			<div class="col-md-4 col-xs-12 col-sm-4">
 				<!-- Site Logo -->
 				<div class="logo text-center">
-					<a href="index.html">
+					<a href="index.php">
 						<!-- replace logo here -->
 						<svg width="135px" height="29px" viewBox="0 0 155 29" version="1.1" xmlns="http://www.w3.org/2000/svg"
 							xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -78,7 +81,7 @@ spl_autoload_register(function($className) {
 								font-family="AustinBold, Austin" font-weight="bold">
 								<g id="Group" transform="translate(-108.000000, -297.000000)" fill="#000000">
 									<text id="AVIATO">
-										<tspan x="108.94" y="325">AVIATO</tspan>
+										<tspan x="108.94" y="325">LEMON</tspan>
 									</text>
 								</g>
 							</g>
@@ -90,8 +93,8 @@ spl_autoload_register(function($className) {
 				<!-- Cart -->
 				<ul class="top-menu text-right list-inline">
 					<li class="dropdown cart-nav dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
-								class="tf-ion-android-cart"></i>Cart</a>
+						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+						<i class="fa-cart-shopping"></i></i>Cart</a>
 						<div class="dropdown-menu cart-dropdown">
 							<!-- Cart Item -->
 							<?php $getcart= $cart->getProductCart();
@@ -128,8 +131,8 @@ spl_autoload_register(function($className) {
 								<span class="total-price"><?php echo $total." "."VNĐ";?></span>
 							</div>
 							<ul class="text-center cart-buttons">
-								<li><a href="cart.html" class="btn btn-small btn-solid-border">Xem giỏ hàng</a></li>
-								<li><a href="checkout.html" class="btn btn-small btn-solid-border">Thanh toán</a></li>
+								<li><a href="cart.php" class="btn btn-small btn-solid-border">Xem giỏ hàng</a></li>
+								<li><a href="checkout.php" class="btn btn-small btn-solid-border">Thanh toán</a></li>
 							</ul>
 						</div>
 							<?php }else{
@@ -150,8 +153,25 @@ spl_autoload_register(function($className) {
 					</li><!-- / Search -->
 
 					<!-- Languages -->
-					<li class="">
-						<a href="">USER</a>
+					<li class="dropdown search dropdown-slide">
+						<a href="login.php">USER</a>
+						<div class="dropdown-menu">
+							<?php $login_check= Session::get('customer_login');
+							if($login_check==false){?>
+							<div class="row">
+								<!-- Basic -->
+								<div class="col-lg-12 col-md-12 mb-sm-6">
+									<ul>
+									<li><a href="login.html">Đăng nhập</a></li>
+									</ul>
+								</div>
+								<?php }else{?>
+									<div class="col-lg-12 col-md-12 mb-sm-6">
+									<ul>
+									<li><a href="login.html">Đăng xuất</a></li>
+									</ul>
+								</div>
+								<?php }?>
 					</li><!-- / Languages -->
 
 				</ul><!-- / .nav .navbar-nav .navbar-right -->
@@ -183,33 +203,36 @@ spl_autoload_register(function($className) {
 
 					<!-- Home -->
 					<li class="dropdown ">
-						<a href="index.html">Home</a>
+						<a href="index.php">Trang chủ</a>
 					</li><!-- / Home -->
 
 
 					<!-- Elements -->
 					<li class="dropdown dropdown-slide">
 						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
-							role="button" aria-haspopup="true" aria-expanded="false">Shop <span
+							role="button" aria-haspopup="true" aria-expanded="false">Sản phẩm <span
 								class="tf-ion-ios-arrow-down"></span></a>
 						<div class="dropdown-menu">
 							<div class="row">
-
+						
 								<!-- Basic -->
-								<div class="col-lg-6 col-md-6 mb-sm-3">
+								<div class="col-lg-12 col-md-12 mb-sm-6">
 									<ul>
-										<li class="dropdown-header">Pages</li>
-										<li role="separator" class="divider"></li>
-										<li><a href="shop.html">Shop</a></li>
-										<li><a href="checkout.html">Checkout</a></li>
-										<li><a href="cart.html">Cart</a></li>
-										<li><a href="pricing.html">Pricing</a></li>
-										<li><a href="confirmation.html">Confirmation</a></li>
+									<li><a href="shop.html">Tất cả</a></li>
+									<?php $getlistCate = $cate->showlistCate();
+									if($getlistCate){
+										while($result =$getlistCate->fetch_assoc()){
+									?>
+										<!-- <li class="dropdown-header">Pages</li>
+										<li role="separator" class="divider"></li> -->
+										<hr>
+										<li><a href="productByCate.php?cateId=<?php echo $result['cateId'];?>"><?php echo $result['cateName']?></a></li>
+										<?php }}?>
 
 									</ul>
 								</div>
 
-								<!-- Layout -->
+								<!-- Layout
 								<div class="col-lg-6 col-md-6 mb-sm-3">
 									<ul>
 										<li class="dropdown-header">Layout</li>
@@ -220,7 +243,8 @@ spl_autoload_register(function($className) {
 									</ul>
 								</div>
 
-							</div><!-- / .row -->
+							</div> -->
+							<!-- / .row -->
 						</div><!-- / .dropdown-menu -->
 					</li><!-- / Elements -->
 

@@ -1,15 +1,21 @@
 <?php
 include 'views/inc/header.php';
 ?>
+<?php
+$login_check= Session::get('customer_login');
+if($login_check){
+	header('location: index.php');
+}
+?>
 <link rel="stylesheet" href="assets/logincss.css">
 <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 <?php
-	//if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
+	if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['login-submit'])){
 	  
-	//	$insertCustomer=$cs->insertCustomer($_POST);
-	//}
+		$loginCustomer=$cs->loginCustomer($_POST);
+	}
 	
 ?>
 <div class="container">
@@ -26,14 +32,19 @@ include 'views/inc/header.php';
 						<hr>
 					</div>
 					<div class="panel-body">
+					<?php
+                        if(isset($loginCustomer)){
+                            echo $loginCustomer;
+                        }
+                        ?>
 						<div class="row">
 							<div class="col-lg-12">
 								<form id="login-form" action="" method="post" role="form" style="display: block;">
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Tên đăng nhập" value="">
 									</div>
 									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Mật khẩu">
 									</div>
 									<!-- <div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">

@@ -16,6 +16,7 @@ spl_autoload_register(function($className) {
     $user = new userModel();
     $cate = new categoryC();
     $pro = new productC();
+	$cs= new customerC();
 
 ?>
 <!DOCTYPE html>

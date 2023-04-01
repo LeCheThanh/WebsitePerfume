@@ -98,6 +98,8 @@ include 'views/inc/header.php';
 						</div>
 					</div><!-- /.modal -->
             <?php           }
+            }else{
+                    echo 'Không có sản phẩm nào thuộc danh mục này';
             }?>
 		</div>
 		<!-- Modal -->

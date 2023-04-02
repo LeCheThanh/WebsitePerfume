@@ -20,7 +20,6 @@
            $productId=$_GET['delproductId'];
            $delProduct= $product->deleteProduct($productId);
            if(isset($delProduct)){
-            echo $delProduct;
            }
              }
       $fm= new Format();

@@ -7,37 +7,53 @@
         $cateName = $_POST['cateName'];
         $cateDesc = $_POST['cateDesc'];
         $insertCate=$class->insertCate($cateName, $cateDesc);
-            echo '<meta http-equiv="refresh" content="1; url=cateList.php" />';
+            // echo '<meta http-equiv="refresh" content="1; url=cateList.php" />';
     }
 ?>
-<div >
-    <form action="cateAdd.php" method="post">
-        <div>
-            <?php
-            if(isset($insertCate)){
-                echo $insertCate;}
-                
-            ?>
+<section id="main-content">
+	<section class="wrapper">
+	<div class="form-w3layouts">
+        <!-- page start-->
+        <!-- page start-->
+        <div class="row">
+            <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Thêm danh mục
+                        </header>
+                        <div class="panel-body">
+                            <div class="position-center">
+                                <form role="form" method="post" >
+                                <div>
+                                <?php
+                                    if(isset($insertCate)){
+                                        echo $insertCate;}
+                                        
+                                    ?>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tên danh mục </label>
+                                    <input type="text" name="cateName" placeholder="Thêm tên danh mục...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Mô tả</label>
+                                    <textarea name="cateDesc" id="" cols="30" rows="3" placeholder="Mô tả..."></textarea>
+                                </div>
+                                <input class="btn btn-info" type="submit" name="submit" value="Thêm">
+                            </form>
+                            </div>
+
+                        </div>
+                        
+                    </section>
+            </div>
         </div>
-    <table>
-        <tr>
-            <td>
-                <input type="text" name="cateName" placeholder="Thêm tên danh mục...">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <textarea name="cateDesc" id="" cols="30" rows="10" placeholder="Mô tả..."></textarea>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="submit" name="submit" value="Thêm">
-            </td>
-        </tr>
-    </table>
+    </div>
 
 
-    </form>
 
-</div>
+<?php
+include './inc/footer.php';
+?>
+

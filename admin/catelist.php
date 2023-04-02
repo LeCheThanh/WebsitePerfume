@@ -8,50 +8,49 @@
         $delCate= $class->deleteCate($delId);
         }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh sách danh mục</title>
-</head>
-<body>
-    <table>
-    <?php
+
+
+<section id="main-content">
+	<section class="wrapper">
+	<div class="table-agile-info">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Danh sách danh mục
+      </div>
+      <table class="table" >
+      <?php
             if(isset($delCate)){
                 echo $delCate;
             }
             ?>
-    <tr>
-        <th>cateId</th>
-        <th>cateName</th>
-        <th>cateDescription</th>
-        <th>Create At</th>
-        <th>Update At</th>
-        <th>Action</th>
-    </tr>
-    <?php
+        <thead>
+          <tr>
+            <th >Tên danh mục</th>
+            <th>Mô tả</th>
+            <th>Chức năng</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php
         $showlistCate = $class->showlistCate();
         if(isset($showlistCate)){
-            $i=0;
             while($result=$showlistCate->fetch_assoc()){
-                $i++;
-
-            
-        
-    ?>
-        <tr>
-            <td><?php echo $result['cateId'];?></td>
+          ?>
+          <tr>
             <td><?php echo $result['cateName'];?></td>
             <td><?php echo $result['cateDescription'];?></td>
-            <td><?php echo $result['createAt'];?></td>
-            <td><?php echo $result['updateAt'];?></td>
-            <td><a href="cateEdit.php?cateId=<?php echo $result['cateId']?>">Edit</a>|<a onclick="return confirm('Bạn chắc chắn muốn xóa?')" href="?delId=<?php echo $result['cateId']?>">Delete</a></td>
-        </tr>
-            
-        <?php }
-    } ?>
-    </table>
-</body>
-</html>
+            <td><a href="cateEdit.php?cateId=<?php echo $result['cateId']?>"><i class="fa fa-pencil-square-o"></i></a> | <a onclick="return confirm('Bạn chắc chắn muốn xóa?')" href="?delId=<?php echo $result['cateId']?>"><i class="fa fa-trash"></a></td>
+          </tr>
+          <?php }}?>
+        </tbody>
+        </table>
+    </div>
+  </div>
+
+
+
+
+<?php
+include './inc/footer.php';
+?>
+

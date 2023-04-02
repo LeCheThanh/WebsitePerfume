@@ -29,10 +29,10 @@ Class categoryC{
             $result = $this->db->insert($query);
         }
         if($result!=false){
-            $arlet = "<script>alert(Thêm thành công!!);</script>";
+            $arlet = "Thêm thành công!!";
             return $arlet;
         }else{
-            $arlet= "<span class='success'>Lỗi</span> ";
+            $arlet= "Lỗi<";
             return $arlet;
 
         }

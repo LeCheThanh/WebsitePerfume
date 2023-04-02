@@ -1,91 +1,68 @@
 <?php include 'inc/header.php';?>
 <?php include 'inc/slidebar.php';?>
+<?php include '../classes/brandC.php'?>
 
-<div >
-    <form action="" method="post"  id="form_add_brand" enctype="multipart/form-data">
-        <div>
-            <?php
-        
-            ?>
+<?php
+    $brand = new brandC();
+    if($_SERVER['REQUEST_METHOD']==='POST'){
+        $brandName = $_POST['brandName'];
+        $brandDesc = $_POST['brandDesc'];
+        $brandImage=$_FILES['brandImage'];
+        $insertBrand=$brand->insertBrand($brandName ,$brandDesc, $brandImage);
+    }
+?>
+
+
+
+
+<section id="main-content">
+	<section class="wrapper">
+	<div class="form-w3layouts">
+        <!-- page start-->
+        <!-- page start-->
+        <div class="row">
+            <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Thêm thương hiệu
+                        </header>
+                        <div class="panel-body">
+                            <div class="position-center">
+                                <form role="form" method="post"  enctype="multipart/form-data">
+                                <div>
+                                <?php
+                                    if(isset($insertBrand)){
+                                        echo $insertBrand;}
+                                        
+                                    ?>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tên thương hiệu </label>
+                                    <input type="text" name="brandName" placeholder="Thêm tên thương hiệu...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Hình ảnh</label>
+                                    <input  id="uploadImage" type="file" name="brandImage" placeholder="Thêm ảnh...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Mô tả</label>
+                                    <textarea name="brandDesc" id="" cols="30" rows="3" placeholder="Mô tả..."></textarea>
+                                </div>
+                                <input class="btn btn-info" type="submit" name="submit" value="Thêm">
+                            </form>
+                            </div>
+
+                        </div>
+                        
+                    </section>
+            </div>
         </div>
-    <table>
-        <tr>
-            <td>
-                <input type="text" name="brandName" placeholder="Thêm tên thương hiệu...">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input  id="uploadImage" type="file" name="brandImage" placeholder="Thêm ảnh...">
-                <div id="preview"></div>
-                <br>
-            </td>
-            
-        </tr>
-        <tr>
-            <td>
-                <textarea name="brandDesc" id="" cols="30" rows="10" placeholder="Mô tả..."></textarea>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="submit" name="submit" value="Thêm">
-            </td>
-        </tr>
-        <div id="err"></div>
-    </table>
-    </form>
-<hr>
+    </div>
 
 
-</div>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-$(document).ready(function() {
-$('#form_add_brand').submit(function(event) {
-    event.preventDefault(); // Ngăn chặn form submit bình thường
-    var formData = new FormData(this); // Tạo đối tượng FormData để chứa dữ liệu form
-    $.ajax({
-      type: 'POST', 
-      url: './xuly.php',
-      data: formData,
-      contentType: false,
-      processData: false,
-      dataType: 'json',
-      success: function(response) {
-        // response = JSON.parse(response);
-        console.log("response :",response);
-        if (response.status == 1) {
-          // Thêm thành công, hiển thị thông báo và reset form
-          alert(response.message);
-          form.trigger('reset');
-        } else {
-          // Thêm thất bại, hiển thị thông báo lỗi
-          alert(response.message);
-        }
-      },
-      error: function() {
-        // Lỗi kết nối đến server
-        alert('Không thể kết nối đến server');
-        // var msg = '';
-        // if (jqXHR.status === 0) {
-        //     msg = 'Not connect.\n Verify Network.';
-        // } else if (jqXHR.status == 404) {
-        //     msg = 'Requested page not found. [404]';
-        // } else if (jqXHR.status == 500) {
-        //     msg = 'Internal Server Error [500].';
-        // } else if (exception === 'parsererror') {
-        //     msg = 'Requested JSON parse failed.';
-        // } else if (exception === 'timeout') {
-        //     msg = 'Time out error.';
-        // } else if (exception === 'abort') {
-        //     msg = 'Ajax request aborted.';
-        // } else {
-        //     msg = 'Uncaught Error.\n' + jqXHR.responseText;
-        // }
-      }
-    });
-  });
-});
-</script>
+
+<?php
+include './inc/footer.php';
+?>
+

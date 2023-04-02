@@ -17,51 +17,49 @@
         $cateEdit=$class->updateCate($cateName, $id,$cateDesc);
     }
 ?>
-<div >
-    <form action="" method="post">
-        <div>
-        <?php
-            if(isset($cateEdit)){
-                echo $cateEdit;
-            }
-            ?>
-            <?php
-                $getCate=$class->getbyId($cateId);
-                if( $getCate){
-                        while ($result = $getCate->fetch_assoc()){
-    
-    
-                
-                ?>
 
-            
-            
+<section id="main-content">
+	<section class="wrapper">
+	<div class="form-w3layouts">
+        <!-- page start-->
+        <!-- page start-->
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                        <header class="panel-heading">
+                            Sửa danh mục
+                        </header>
+                        <div class="panel-body">
+                            <div class="position-center">
+                                <form role="form" method="post" >
+                                    <?php    if(isset($cateEdit)){
+                                     echo $cateEdit;
+                                         }
+                                          ?>
+                      <?php
+                        $getCate=$class->getbyId($cateId);
+                        if( $getCate){
+                                while ($result = $getCate->fetch_assoc()){
+                            ?> 
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tên danh mục </label>
+                                    <input type="text" name="cateName" value="<?php echo $result['cateName']?>" placeholder="Thêm tên danh mục...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Mô tả</label>
+                                    <textarea name="cateDesc" id="" cols="30" rows="3" placeholder="Mô tả..." ><?php echo $result['cateDescription']?></textarea>
+                                </div>
+                              
+                                <input class="btn btn-info"  type="submit" name="submit" value="Sửa">
+                            </form>
+                            <?php         }
+                                    }
+                                                ?>
+                        </div>
+                            </div>
+
+                        </section>
+                        </div>     
+            </div>
         </div>
-    <table>
-        <tr>
-            <td>
-                <input type="text" name="cateName" value="<?php echo $result['cateName']?>" placeholder="Thêm tên danh mục...">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <textarea name="cateDesc" id="" cols="30" rows="10" placeholder="Mô tả..." ><?php echo $result['cateDescription']?></textarea>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="submit" name="submit" value="Sửa">
-            </td>
-            <td>
-                <a href="./catelist.php">Trở về danh sách danh mục</a>
-            </td>
-        </tr>
-    </table>
-
-
-    </form>
-    <?php         }
-    }
-                ?>
-
-</div>
+    </div>

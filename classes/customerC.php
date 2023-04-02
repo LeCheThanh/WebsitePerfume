@@ -57,7 +57,7 @@ Class customerC{
             
         }else{
             $query=" INSERT INTO  `customers`(Name,Address,Phone,Email,Password,Username )
-                                    VALUES ('$name',' $address','$phone','$email','$password','$username')";
+                                    VALUES ('$name','$address','$phone','$email','$password','$username')";
             $result = $this->db->insert($query);
             if($result!=false){
                 $arlet = "<span class='label label-success'>Đăng ký thành công !!</span>";

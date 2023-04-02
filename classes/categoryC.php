@@ -86,7 +86,7 @@ Class categoryC{
     //endBackend
     //FrotEnd
     public function showlistCateFront(){
-        $query=" SELECT * FROM  `categories` ORDER BY cateId DESC LIMIT 2";
+        $query=" SELECT * FROM  `categories` ORDER BY cateId  LIMIT 2";
         $result = $this->db->select($query);
         return $result;
     }

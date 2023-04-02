@@ -31,7 +31,7 @@
 						<li><a href="brandAdd.php">Thêm thương hiệu</a></li>
                     </ul>
                 </li>
-                </li>
+                
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-bars"></i>
@@ -43,6 +43,17 @@
                     </ul>
                 </li>
                 
+
+                <li class="sub-menu">
+                    <a href="/admin/inbox.php">
+                    <i class="fa fa-inbox"></i>
+                        <span>Inbox</span>
+                    </a>
+                    <!-- <ul class="sub">
+						<li><a href="cateList.php">Danh sách danh mục</a></li>
+						<li><a href="cateAdd.php">Thêm danh mục</a></li>
+                    </ul> -->
+                </li>
             </ul>  
                      
          </div>

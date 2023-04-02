@@ -115,7 +115,7 @@ include 'views/inc/slider.php';
 										</span>
 									</li>
 									<li>
-										<a href="#!" ><i class="fas fa-heart"></i></a>
+										<a href="?wlist=<?php echo $result['productId']?>" ><i class="fas fa-heart"></i></a>
 									</li>
 									<li>
 										<a href="#!"><i class="fas fa-cart-shopping"></i></a>

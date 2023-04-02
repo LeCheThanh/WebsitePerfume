@@ -12,6 +12,17 @@ include 'views/inc/header.php';
    if($login_check==false){
 	header('location: login.php');
  }
+ 
+  ?>
+  <?php
+  
+  if(isset($_GET['confirmId'])){
+    $ct=new cartModel();
+    $id = $_GET['confirmId'];
+    $time = $_GET['time'];
+    $price = $_GET['price'];
+    $shiftConfirm=$ct->shiftConfirm($id,$time,$price);
+  }
   ?>
 <section class="page-header">
 	<div class="container">
@@ -70,25 +81,28 @@ include 'views/inc/header.php';
                       <td class="" name="Status"><?php
                       if($result['Status']==0){
                         echo '<span class="label label-warning">Đang xử lý</span>';
-                      }else{
-                        echo '<span class="label label-primary">Đã xử lý</span>';
+                      }elseif($result['Status']=='1'){?>
+                        <span class="label label-primary">Đang vận chuyển</span>
+                     <?php }else{
+                         echo '<span class="label label-success">Hoàn thành</span>';
                       }
                       ?>
-
                       </td>
                       <td class="">
                       <?php 
-                      
                       echo date('H:i d/m/Y',strtotime($result['dateOrder']));
                       ?>
                       </td>
-                 
                     <?php
-                     if($result['Status']==0){?>
+                     if($result['Status']==0 ){?>
                      <td><?php echo 'N/A';?></td>
-                    <?php }else{?> 
-                     <td><a class="label label-danger" onclick="return confirm('Bạn chắc chắn muốn xóa?')" href="?cartId=<?php echo $result['cartId']?>">Xóa</a></td>
-                    <?php }?>
+                    <?php }elseif($result['Status']=='1' ){?>
+                      <td><a href="?confirmId=<?php echo $id?>&price=<?php echo $result['Price']?>&time=<?php echo $result['dateOrder'] ?>"><span class="label label-info">Đã nhận hàng</span></a></td>
+                      <?php }else{?>
+                        <td>
+                          <span class="label label-info">OK</span>
+                      </td>
+                      <?php }?>
                     </tr>
     
                     <?php

@@ -141,6 +141,55 @@ Class cartModel{
         return   $get_cart_order;
 
     }
+    public function getInboxCart(){
+        $query="SELECT * FROM orders ";
+        $get_cart_order= $this->db->select($query);
+        return   $get_cart_order;
+
+
+    }
+    public function shilfted($shiftId,$time,$price){
+        $shiftId = mysqli_real_escape_string($this->db->link,$shiftId);
+        $time = mysqli_real_escape_string($this->db->link,$time);
+        $price = mysqli_real_escape_string($this->db->link,$price);
+        $query = "UPDATE orders SET Status = '1' WHERE orderId ='$shiftId' AND dateOrder='$time' AND Price = '$price' ";
+        $result = $this->db->update($query);
+        if($result){
+            $alert="<span class='label label-success'>Cập nhật trạng thái thành công !!</span>";
+            return $alert;
+        }else{
+            $alert="Lỗi";
+            return $alert;
+        }
+    }
+    public function delShift($shiftId,$time,$price){
+        $shiftId = mysqli_real_escape_string($this->db->link,$shiftId);
+        $time = mysqli_real_escape_string($this->db->link,$time);
+        $price = mysqli_real_escape_string($this->db->link,$price);
+        $query = "DELETE  FROM orders WHERE orderId ='$shiftId' AND dateOrder='$time' AND Price = '$price' ";
+        $result = $this->db->delete($query);
+        if($result){
+            $alert="<span class='label label-success'>Xóa thành công !!</span>";
+            return $alert;
+        }else{
+            $alert="Lỗi";
+            return $alert;
+        }
+    }
+    public function shiftConfirm($id,$time,$price){
+        $shiftId = mysqli_real_escape_string($this->db->link,$id);
+        $time = mysqli_real_escape_string($this->db->link,$time);
+        $price = mysqli_real_escape_string($this->db->link,$price);
+        $query = "UPDATE orders SET Status = '2' WHERE customerId ='$shiftId' AND dateOrder='$time' AND Price = '$price' ";
+        $result = $this->db->update($query);
+        if($result){
+            $alert="<span class='label label-success'>Cập nhật trạng thái thành công !!</span>";
+            return $alert;
+        }else{
+            $alert="Lỗi";
+            return $alert;
+        }
+    }
 }
 
 ?>

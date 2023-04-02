@@ -94,7 +94,7 @@ spl_autoload_register(function($className) {
 				<ul class="top-menu text-right list-inline">
 					<li class="dropdown cart-nav dropdown-slide">
 						<a href="" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-						<a href="cart.php"><i class="fas fa-cart-shopping"></i>Cart</a></a>
+						<a href="cart.php"><i class="fas fa-cart-shopping"></i>Giỏ hàng</a></a>
 						<div class="dropdown-menu cart-dropdown">
 							<!-- Cart Item -->
 							<?php $getcart= $cart->getProductCart();
@@ -141,8 +141,61 @@ spl_autoload_register(function($className) {
 
 					</li><!-- / Cart -->
 
+
+					<!-- Wish list -->
+					<li class="dropdown cart-nav dropdown-slide">
+						<a href="" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+						<a href="cart.php"><i class="fa fa-heart"></i></a>Thích</a>
+						<div class="dropdown-menu cart-dropdown">
+							<!-- Cart Item -->
+							<?php $getcart= $cart->getProductCart();
+								if($getcart){
+									while($result = $getcart->fetch_assoc()){
+
+							
+							?>
+							<div class="media">
+								<a class="pull-left" href="#!">
+									<img class="media-object" src="admin/uploads/product/<?php echo $result['image']?>" alt="image" />
+								</a>
+								<div class="media-body">
+									<h4 class="media-heading"><a href="#!"><?php echo $result['productName']?></a></h4>
+									<div class="cart-price">
+										<span><?php echo $result['quantity']?>x</span>
+										<span><?php echo $result['price']." "."VNĐ"?></span>
+									</div>
+									<h5><strong><?php $total= $result['price'] * $result['quantity']; echo $total." "."VNĐ"?></strong></h5>
+								</div>
+								<a href="#!" class="remove"><i class="tf-ion-close"></i></a>
+							</div>
+							<?php
+								}
+							}?><!-- / Cart Item -->
+							<!-- / Cart Item -->
+							<?php if($getcart){
+								$total= Session::get("total");
+
+								?>
+								
+							<div class="cart-summary">
+								<span>Tổng cộng</span>
+								<span class="total-price"><?php echo $total." "."VNĐ";?></span>
+							</div>
+							<ul class="text-center cart-buttons">
+								<li><a href="cart.php" class="btn btn-small btn-solid-border">Xem giỏ hàng</a></li>
+								<li><a href="checkout.php" class="btn btn-small btn-solid-border">Thanh toán</a></li>
+							</ul>
+						</div>
+							<?php }else{
+								echo'Danh sách yêu thích trống!';
+							}?>
+
+					</li>
+
+
+					<!-- Wish list -->
 					<!-- Search -->
-					<li class="dropdown search dropdown-slide">
+					<!-- <li class="dropdown search dropdown-slide">
 						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
 								class="tf-ion-ios-search-strong"></i> Search</a>
 						<ul class="dropdown-menu search-dropdown">
@@ -150,7 +203,8 @@ spl_autoload_register(function($className) {
 								<form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
 							</li>
 						</ul>
-					</li><!-- / Search -->
+					</li> -->
+					<!-- / Search -->
 
 					<!-- Languages -->
 					<li class="dropdown search dropdown-slide">
@@ -161,7 +215,7 @@ spl_autoload_register(function($className) {
 							Session::destroy();
 						}
 						?>
-						<a href="login.php"><i class="fas fa-user"></i></a>
+						<a href="login.php"><i class="fas fa-user"></i>Tài khoản</a>
 						<div class="dropdown-menu">
 							<?php $login_check= Session::get('customer_login');
 							if($login_check==false){?>

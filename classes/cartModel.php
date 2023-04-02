@@ -130,6 +130,17 @@ Class cartModel{
 
      }
     }
+    public function getAmountPrice($customerId){
+        $query="SELECT * FROM orders WHERE customerId = '$customerId'";
+        $get_price= $this->db->select($query);
+        return   $get_price;
+    }
+    public function getcartOdered($customerId ){
+        $query="SELECT * FROM orders WHERE customerId = '$customerId'";
+        $get_cart_order= $this->db->select($query);
+        return   $get_cart_order;
+
+    }
 }
 
 ?>

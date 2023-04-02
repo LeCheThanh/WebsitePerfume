@@ -177,6 +177,8 @@ spl_autoload_register(function($className) {
 									<ul>
 									<li><a href="profile.php">Thông tin tài khoản</a></li>
 									<hr>
+									<li><a href="orderdetail.php">Đơn hàng đã đặt</a></li>
+									<hr>
 									<li><a href="?customerId=<?php echo Session::get('customer_id')?>">Đăng xuất</a></li>
 									</ul>
 								</div>

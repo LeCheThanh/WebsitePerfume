@@ -89,7 +89,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
 			<div class="col-md-7">
 				<div class="single-product-details">
 					<h2><?php echo $result['productName']?></h2>
-					<p class="product-price"><?php echo $result['productPrice']?></p>
+					<p class="product-price"><?php echo $result['productPrice']." ".'VNĐ'?></p>
 					
 					<p class="product-description mt-20">
                     <?php echo $fm->textShorten($result['productDesc'],200)?>

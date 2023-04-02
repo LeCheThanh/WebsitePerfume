@@ -2,6 +2,10 @@
 include 'views/inc/header.php';
 ?>
 <?php
+  $login_check= Session::get('customer_login');
+   if($login_check==false){
+	header('location: login.php');}?>
+<?php
  if(isset($_GET['cartId']) ){
   $delId=$_GET['cartId'];
   $delCart= $cart->deleteProCO($delId);

@@ -26,7 +26,7 @@ Class customerC{
         $phone = mysqli_real_escape_string($this->db->link,$data['phone']);
 
     if($username=="" ||  $password=="" || $email=="" ||$address=="" ||$phone=="" ){
-            $arlet = "Không được để trống !!";
+        $arlet = "<span class='label label-danger'>Không được để trống !!</span>";
             return $arlet;
             // echo json_encode(array(
             //     'status'=>0,
@@ -35,7 +35,7 @@ Class customerC{
             // ));
             // exit();
     }elseif($password!=$confirm_password){
-        $arlet = "Mật Khẩu không khớp";
+        $arlet = "<span class='label label-danger'>Mật khẩu không khớp !!</span>";
             return $arlet;
         // echo json_encode(array(
         //     'status'=>0,
@@ -47,7 +47,7 @@ Class customerC{
         $check_username = "SELECT * FROM customers WHERE Username = '$username'";
         $result = $this->db->select($check_username);
         if($result){
-            $arlet = "Username đã tồn tại !!";
+            $arlet = "<span class='label label-danger'>Tên đăng nhập đã tồn tại !!</span>";
             return $arlet;
             // echo json_encode(array(
             //     'status'=>0,
@@ -60,7 +60,7 @@ Class customerC{
                                     VALUES ('$name',' $address','$phone','$email','$password','$username')";
             $result = $this->db->insert($query);
             if($result!=false){
-                $arlet = "Đăng kí thành công !!";
+                $arlet = "<span class='label label-success'>Đăng ký thành công !!</span>";
                 return $arlet;
                 // echo json_encode(array(
                 //     'status'=>1,
@@ -83,7 +83,7 @@ Class customerC{
         $username = mysqli_real_escape_string($this->db->link,$data['username']);
         
         if($username=="" ||  $password==""){
-            $arlet = "Tên đăng nhập và mật khẩu đang trống !!";
+            $arlet = "<span class='label label-danger'>Tên đăng nhập và mật khẩu đang trống !!</span>";
             return $arlet;   
         }else{
 
@@ -103,7 +103,7 @@ Class customerC{
     
                 // ));
              }  else{
-                $arlet = "Tên đăng nhập hoặc mật khẩu không hợp lệ !!";
+                $arlet = "<span class='label label-warning'>Tên đăng nhập hoặc mật khẩu không hợp lệ !!</span>";
                 return $arlet;
              }
           }
@@ -127,7 +127,7 @@ Class customerC{
                                 
             $result = $this->db->update($query);
             if($result!=false){
-                $arlet = "Cập nhật thành công !!";
+                $arlet = "<span class='label label-success'>Cập nhật thành công !!</span>";
                 return $arlet;
              }else{
             $arlet = "Lỗi !!";

@@ -66,7 +66,7 @@ spl_autoload_register(function($className) {
 		<div class="row">
 			<div class="col-md-4 col-xs-12 col-sm-4">
 				<div class="contact-number">
-					<i class="tf-ion-ios-telephone"></i>
+					<i class="fas fa-phone-volume"></i>
 					<span>+84 784846464</span>
 				</div>
 			</div>
@@ -94,7 +94,7 @@ spl_autoload_register(function($className) {
 				<ul class="top-menu text-right list-inline">
 					<li class="dropdown cart-nav dropdown-slide">
 						<a href="" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-						<i class="fa-cart-shopping"></i><a href="cart.php">Cart</a></a>
+						<a href="cart.php"><i class="fas fa-cart-shopping"></i>Cart</a></a>
 						<div class="dropdown-menu cart-dropdown">
 							<!-- Cart Item -->
 							<?php $getcart= $cart->getProductCart();
@@ -160,7 +160,7 @@ spl_autoload_register(function($className) {
 							Session::destroy();
 						}
 						?>
-						<a href="login.php">USER</a>
+						<a href="login.php"><i class="fas fa-user"></i></a>
 						<div class="dropdown-menu">
 							<?php $login_check= Session::get('customer_login');
 							if($login_check==false){?>

@@ -93,6 +93,17 @@ Class cartModel{
         $result=$this->db->delete($query);
         return $result;
     }
+    public function deleteProCO($cartid){
+        $cartid = mysqli_real_escape_string($this->db->link,$cartid);
+        $query = "DELETE FROM cart WHERE cartId = '$cartid' ";
+        $result = $this->db->delete($query);
+        if($result){
+            header('location:checkout.php');
+        }else{
+            $alert="Lỗi";
+            return $alert;
+        }
+    }
 }
 
 ?>

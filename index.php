@@ -29,7 +29,6 @@ include 'views/inc/slider.php';
 		
 	</div>
 </section> -->
-
 <section class="product-category index section">
 	<div class="container">
 		<div class="row">
@@ -97,7 +96,11 @@ include 'views/inc/slider.php';
 		<?php
 			$getproduct = $pro->getproductFeature();
 			if($getproduct){
-				while($result = $getproduct->fetch_assoc()){?>
+				while($result = $getproduct->fetch_assoc()){
+					
+					?>
+		
+	
 			<div class="row">
 				<div class="col-md-4">
 					<div class="product-item">
@@ -108,32 +111,27 @@ include 'views/inc/slider.php';
 								<ul>
 									<li>
 										<span  data-toggle="modal" data-target="#product-modal-<?php echo $result['productId']; ?>">
-											<i class="tf-ion-ios-search-strong"></i>
+											<i class="fas fa-search"></i>
 										</span>
 									</li>
 									<li>
-										<a href="#!" ><i class="tf-ion-ios-heart"></i></a>
+										<a href="#!" ><i class="fas fa-heart"></i></a>
 									</li>
 									<li>
-										<a href="#!"><i class="tf-ion-android-cart"></i></a>
+										<a href="#!"><i class="fas fa-cart-shopping"></i></a>
 									</li>
 								</ul>
 							</div>
 						</div>
 						<div class="product-content">
-							<h4><a href="product-single.html"><?php echo $result['productName']?></a></h4>
+							<h4><a href="details.php?proId=<?php echo $result['productId']?>"><?php echo $result['productName']?></a></h4>
 							<p class="price"><?php echo $result['productPrice']." ".'VNĐ'?></p>
 						</div>
 					</div>
 				</div>
-				<?php
-				if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
-				$Addtocart = $cart->addtocart($result['productId'],1);
-					}
-					?>
 				<div class="modal product-modal fade" id="product-modal-<?php echo $result['productId']; ?>">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<i class="tf-ion-close"></i>
+							<i class="fas fa-close"></i>
 						</button>
 						<div class="modal-dialog " role="document">
 							<div class="modal-content">
@@ -152,8 +150,15 @@ include 'views/inc/slider.php';
 												<?php echo $result['productDesc']?>
 												</p>
 												<!-- <a href="cart.html" class="btn btn-main">Thêm vào giỏ hàng</a> -->
-												<form method="post">
-												<button name="submit "class="btn btn-main">Thêm vào giỏ hàng</button>
+												<?php   
+											if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
+												$productId=  $result['productId'];
+												$quantity = 1;
+												$Addtocart = $cart->addtocart($productId,$quantity);
+											}
+												?>
+												<form method="post" action="">
+												<button type="submit" name="submit "class="btn btn-main">Thêm vào giỏ hàng</button>
 												</form>
 
 												<a href="details.php?proId=<?php echo $result['productId']?>" class="btn btn-transparent">Chi tiết sản phẩm</a>
@@ -189,20 +194,20 @@ include 'views/inc/slider.php';
 								<ul>
 									<li>
 										<span  data-toggle="modal" data-target="#product-modal-<?php echo $result['productId']; ?>">
-											<i class="tf-ion-ios-search-strong"></i>
+											<i class="fas fa-search"></i>
 										</span>
 									</li>
 									<li>
-										<a href="#!" ><i class="tf-ion-ios-heart"></i></a>
+										<a href="#!" ><i class="fas fa-heart"></i></a>
 									</li>
 									<li>
-										<a href="#!"><i class="tf-ion-android-cart"></i></a>
+										<a href="#!"><i class="fas fa-cart-shopping"></i></a>
 									</li>
 								</ul>
 							</div>
 						</div>
 						<div class="product-content">
-							<h4><a href="product-single.html"><?php echo $result['productName']?></a></h4>
+							<h4><a href="details.php?proId=<?php echo $result['productId']?>"><?php echo $result['productName']?></a></h4>
 							<p class="price"><?php echo $result['productPrice']." ".'VNĐ'?></p>
 						</div>
 						<a href="details.php?proId=<?php echo $result['productId']?>" class="btn btn-transparent">Chi tiết sản phẩm</a>
@@ -210,11 +215,6 @@ include 'views/inc/slider.php';
 			
 				</div>
 				<!-- Modal -->
-				<?php
-				if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
-				$Addtocart = $cart->addtocart($result['productId'],1);
-					}
-					?>
 						<div class="modal product-modal fade" id="product-modal-<?php echo $result['productId']; ?>">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<i class="tf-ion-close"></i>
@@ -236,7 +236,7 @@ include 'views/inc/slider.php';
 												<?php echo $result['productDesc']?>
 												</p>
 												<form method="post">
-												<button name="submit "class="btn btn-main">Thêm vào giỏ hàng</button>
+												<button type="submit" name="submit "class="btn btn-main">Thêm vào giỏ hàng</button>
 												</form>
 												<a href="details.php?proId=<?php echo $result['productId']?>" class="btn btn-transparent">Chi tiết sản phẩm</a>
 											</div>

@@ -66,7 +66,7 @@ if(!isset($_GET['id'])){
                       <td class="">
                         <div class="product-info">
                           <img width="80" src="admin/uploads/product/<?php echo $result['image']?>" alt="productImage">
-                          <a href="#!"><?php echo $result['productName']?></a>
+                          <a href="details.php?proId=<?php echo $result['productId']?>"><?php echo $result['productName']?></a>
                         </div>
                       </td>
                       <td class=""><?php echo $result['price']." "."VNĐ"?></td>
@@ -102,7 +102,7 @@ if(!isset($_GET['id'])){
                   echo '<p>Giỏ hàng đang trống!</p>';
                 }?>
                 
-                <a href="checkout.html" class="btn btn-submit btn-solid-border pull-right"><b>Thanh toán</b></a>
+                <a href="checkout.php" class="btn btn-submit btn-solid-border pull-right"><b>Thanh toán</b></a>
                 <a href="shop.php" class="btn btn-submit btn-solid-border pull-right"><b>Tiếp tục mua sắm</b></a>
             </div>
           </div>

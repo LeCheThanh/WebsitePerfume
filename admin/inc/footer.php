@@ -1,180 +1,109 @@
-<footer class="footer mt-auto">
-            <div class="copyright bg-white">
-              <p>
-                &copy; <span id="copy-year"></span> Copyright Mono Dashboard Bootstrap Template by <a class="text-primary" href="http://www.iamabdus.com/" target="_blank" >Abdus</a>.
-              </p>
-            </div>
-            <script>
-                var d = new Date();
-                var year = d.getFullYear();
-                document.getElementById("copy-year").innerHTML = year;
-            </script>
-          </footer>
+<!-- footer -->
+<div class="footer">
+			<div class="wthree-copyright">
+			  <p>© 2017 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+			</div>
+		  </div>
+  <!-- / footer -->
+</section>
+<!--main content end-->
+</section>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="assets/js/scripts.js"></script>
+<script src="assets/js/jquery.slimscroll.js"></script>
+<script src="assets/js/jquery.nicescroll.js"></script>
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
+<script src="assets/js/jquery.scrollTo.js"></script>
+<!-- morris JavaScript -->	
+<script>
+	$(document).ready(function() {
+		//BOX BUTTON SHOW AND CLOSE
+	   jQuery('.small-graph-box').hover(function() {
+		  jQuery(this).find('.box-button').fadeIn('fast');
+	   }, function() {
+		  jQuery(this).find('.box-button').fadeOut('fast');
+	   });
+	   jQuery('.small-graph-box .box-close').click(function() {
+		  jQuery(this).closest('.small-graph-box').fadeOut(200);
+		  return false;
+	   });
+	   
+	    //CHARTS
+	    function gd(year, day, month) {
+			return new Date(year, month - 1, day).getTime();
+		}
+		
+		graphArea2 = Morris.Area({
+			element: 'hero-area',
+			padding: 10,
+        behaveLikeLine: true,
+        gridEnabled: false,
+        gridLineColor: '#dddddd',
+        axes: true,
+        resize: true,
+        smooth:true,
+        pointSize: 0,
+        lineWidth: 0,
+        fillOpacity:0.85,
+			data: [
+				{period: '2015 Q1', iphone: 2668, ipad: null, itouch: 2649},
+				{period: '2015 Q2', iphone: 15780, ipad: 13799, itouch: 12051},
+				{period: '2015 Q3', iphone: 12920, ipad: 10975, itouch: 9910},
+				{period: '2015 Q4', iphone: 8770, ipad: 6600, itouch: 6695},
+				{period: '2016 Q1', iphone: 10820, ipad: 10924, itouch: 12300},
+				{period: '2016 Q2', iphone: 9680, ipad: 9010, itouch: 7891},
+				{period: '2016 Q3', iphone: 4830, ipad: 3805, itouch: 1598},
+				{period: '2016 Q4', iphone: 15083, ipad: 8977, itouch: 5185},
+				{period: '2017 Q1', iphone: 10697, ipad: 4470, itouch: 2038},
+			
+			],
+			lineColors:['#eb6f6f','#926383','#eb6f6f'],
+			xkey: 'period',
+            redraw: true,
+            ykeys: ['iphone', 'ipad', 'itouch'],
+            labels: ['All Visitors', 'Returning Visitors', 'Unique Visitors'],
+			pointSize: 2,
+			hideHover: 'auto',
+			resize: true
+		});
+		
+	   
+	});
+	</script>
+<!-- calendar -->
+	<script type="text/javascript" src="js/monthly.js"></script>
+	<script type="text/javascript">
+		$(window).load( function() {
 
-      </div>
-    </div>
-    
-                    <!-- Card Offcanvas -->
-                    <div class="card card-offcanvas" id="contact-off" >
-                      <div class="card-header">
-                        <h2>Contacts</h2>
-                        <a href="#" class="btn btn-primary btn-pill px-4">Add New</a>
-                      </div>
-                      <div class="card-body">
+			$('#mycalendar').monthly({
+				mode: 'event',
+				
+			});
 
-                        <div class="mb-4">
-                          <input type="text" class="form-control form-control-lg form-control-secondary rounded-0" placeholder="Search contacts...">
-                        </div>
+			$('#mycalendar2').monthly({
+				mode: 'picker',
+				target: '#mytarget',
+				setWidth: '250px',
+				startHidden: true,
+				showTrigger: '#mytarget',
+				stylePast: true,
+				disablePast: true
+			});
 
-                        <div class="media media-sm">
-                          <div class="media-sm-wrapper">
-                            <a href="user-profile.html">
-                              <img src="images/user/user-sm-01.jpg" alt="User Image">
-                              <span class="active bg-primary"></span>
-                            </a>
-                          </div>
-                          <div class="media-body">
-                            <a href="user-profile.html">
-                              <span class="title">Selena Wagner</span>
-                              <span class="discribe">Designer</span>
-                            </a>
-                          </div>
-                        </div>
+		switch(window.location.protocol) {
+		case 'http:':
+		case 'https:':
+		// running on a server, should be good.
+		break;
+		case 'file:':
+		alert('Just a heads-up, events will not work when run locally.');
+		}
 
-                        <div class="media media-sm">
-                          <div class="media-sm-wrapper">
-                            <a href="user-profile.html">
-                              <img src="images/user/user-sm-02.jpg" alt="User Image">
-                              <span class="active bg-primary"></span>
-                            </a>
-                          </div>
-                          <div class="media-body">
-                            <a href="user-profile.html">
-                              <span class="title">Walter Reuter</span>
-                              <span>Developer</span>
-                            </a>
-                          </div>
-                        </div>
-
-                        <div class="media media-sm">
-                          <div class="media-sm-wrapper">
-                            <a href="user-profile.html">
-                              <img src="images/user/user-sm-03.jpg" alt="User Image">
-                            </a>
-                          </div>
-                          <div class="media-body">
-                            <a href="user-profile.html">
-                              <span class="title">Larissa Gebhardt</span>
-                              <span>Cyber Punk</span>
-                            </a>
-                          </div>
-                        </div>
-
-                        <div class="media media-sm">
-                          <div class="media-sm-wrapper">
-                            <a href="user-profile.html">
-                              <img src="images/user/user-sm-04.jpg" alt="User Image">
-                            </a>
-
-                          </div>
-                          <div class="media-body">
-                            <a href="user-profile.html">
-                              <span class="title">Albrecht Straub</span>
-                              <span>Photographer</span>
-                            </a>
-                          </div>
-                        </div>
-
-                        <div class="media media-sm">
-                          <div class="media-sm-wrapper">
-                            <a href="user-profile.html">
-                              <img src="images/user/user-sm-05.jpg" alt="User Image">
-                              <span class="active bg-danger"></span>
-                            </a>
-                          </div>
-                          <div class="media-body">
-                            <a href="user-profile.html">
-                              <span class="title">Leopold Ebert</span>
-                              <span>Fashion Designer</span>
-                            </a>
-                          </div>
-                        </div>
-
-                        <div class="media media-sm">
-                          <div class="media-sm-wrapper">
-                            <a href="user-profile.html">
-                              <img src="images/user/user-sm-06.jpg" alt="User Image">
-                              <span class="active bg-primary"></span>
-                            </a>
-                          </div>
-                          <div class="media-body">
-                            <a href="user-profile.html">
-                              <span class="title">Selena Wagner</span>
-                              <span>Photographer</span>
-                            </a>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-
-
-
-    
-                    <script src="plugins/jquery/jquery.min.js"></script>
-                    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-                    <script src="plugins/simplebar/simplebar.min.js"></script>
-                    <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
-
-                    
-                    
-                    <script src="plugins/apexcharts/apexcharts.js"></script>
-                    
-                    
-                    
-                    <script src="plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
-                    
-                    
-                    
-                    <script src="plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
-                    <script src="plugins/jvectormap/jquery-jvectormap-world-mill.js"></script>
-                    <script src="plugins/jvectormap/jquery-jvectormap-us-aea.js"></script>
-                    
-                    
-                    
-                    <script src="plugins/daterangepicker/moment.min.js"></script>
-                    <script src="plugins/daterangepicker/daterangepicker.js"></script>
-                    <script>
-                      jQuery(document).ready(function() {
-                        jQuery('input[name="dateRange"]').daterangepicker({
-                        autoUpdateInput: false,
-                        singleDatePicker: true,
-                        locale: {
-                          cancelLabel: 'Clear'
-                        }
-                      });
-                        jQuery('input[name="dateRange"]').on('apply.daterangepicker', function (ev, picker) {
-                          jQuery(this).val(picker.startDate.format('MM/DD/YYYY'));
-                        });
-                        jQuery('input[name="dateRange"]').on('cancel.daterangepicker', function (ev, picker) {
-                          jQuery(this).val('');
-                        });
-                      });
-                    </script>
-                    
-                    
-                    
-                    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-                    
-                    
-                    
-                    <script src="plugins/toaster/toastr.min.js"></script>
-
-                    
-                    
-                    <script src="/assets/js/mono.js"></script>
-                    <script src="/assets/js/chart.js"></script>
-                    <script src="/assets/js/map.js"></script>
-                    <script src="/assets/js/custom.js"></script>
+		});
+	</script>
+	<!-- //calendar -->
+</body>
+</html>
 
                     

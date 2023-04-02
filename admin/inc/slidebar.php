@@ -1,70 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <title>Document</title>
-</head>
-<body>
-<main class="d-flex flex-nowrap">
-  <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
-      <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-        <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-        <span class="fs-5 fw-semibold">Collapsible</span>
-      </a>
-      <ul class="list-unstyled ps-0">
-        <li class="mb-1">
-          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-            Sản phẩm
-          </button>
-          <div class="collapse show" id="home-collapse" style="">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="productAdd.php" class="link-dark d-inline-flex text-decoration-none rounded">Thêm sản phẩm</a></li>
-              <li><a href="productList.php" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách sản phẩm</a></li>
-              <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Reports</a></li>
-            </ul>
-          </div>
-        </li>
-        <li class="mb-1">
-          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-            Thương hiệu
-          </button>
-          <div class="collapse" id="dashboard-collapse" style="">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="brandAdd.php" class="link-dark d-inline-flex text-decoration-none rounded">Thêm thương hiệu</a></li>
-              <li><a href="brandList.php" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách thương hiệu</a></li>
-            </ul>
-          </div>
-        </li>
-        <li class="mb-1">
-          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-            Danh mục
-          </button>
-          <div class="collapse" id="orders-collapse" style="">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="cateAdd.php" class="link-dark d-inline-flex text-decoration-none rounded">Thêm danh mục</a></li>
-              <li><a href="cateList.php" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách danh mục</a></li>
-          </div>
-        </li>
-        <li class="border-top my-3"></li>
-        <li class="mb-1">
-          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-            Account
-          </button>
-          <div class="collapse" id="account-collapse" style="">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">New...</a></li>
-              <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Profile</a></li>
-              <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Settings</a></li>
-              <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Sign out</a></li>
-            </ul>
-          </div>
-        </li>
-      </ul>
+<!--sidebar start-->
+<aside>
+    <div id="sidebar" class="nav-collapse">
+        <!-- sidebar menu start-->
+        <div class="leftside-navigation">
+            <ul class="sidebar-menu" id="nav-accordion">
+                <li>
+                    <a class="active" href="index.php">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Trang chủ</span>
+                    </a>
+                </li>
+                
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Sản phẩm</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="productList.php">Danh sách sản phẩm</a></li>
+						<li><a href="glyphicon.html">Thêm sản phẩm</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="fontawesome.html">
+                        <i class="fa fa-bullhorn"></i>
+                        <span>Font awesome </span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-th"></i>
+                        <span>Data Tables</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="basic_table.html">Basic Table</a></li>
+                        <li><a href="responsive_table.html">Responsive Table</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-tasks"></i>
+                        <span>Form Components</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="form_component.html">Form Elements</a></li>
+                        <li><a href="form_validation.html">Form Validation</a></li>
+						<li><a href="dropzone.html">Dropzone</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-envelope"></i>
+                        <span>Mail </span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="mail.html">Inbox</a></li>
+                        <li><a href="mail_compose.html">Compose Mail</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class=" fa fa-bar-chart-o"></i>
+                        <span>Charts</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="chartjs.html">Chart js</a></li>
+                        <li><a href="flot_chart.html">Flot Charts</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class=" fa fa-bar-chart-o"></i>
+                        <span>Maps</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="google_map.html">Google Map</a></li>
+                        <li><a href="vector_map.html">Vector Map</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-glass"></i>
+                        <span>Extra</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="gallery.html">Gallery</a></li>
+						<li><a href="404.html">404 Error</a></li>
+                        <li><a href="registration.html">Registration</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="login.html">
+                        <i class="fa fa-user"></i>
+                        <span>Login Page</span>
+                    </a>
+                </li>
+            </ul>            </div>
+        <!-- sidebar menu end-->
     </div>
-</main>
-</body>
-</html>
+</aside>

@@ -7,6 +7,15 @@ include 'views/inc/header.php';
   $delCart= $cart->deleteProCO($delId);
   }
   ?>
+  <?php
+ if(isset($_GET['orderid']) &&$_GET['orderid']=='order'  ){
+    $customerId = Session::get('customer_id');
+    $insertOrder = $cart->insertOder( $customerId);
+    //neu da thanh toan thi xoa gio hang
+    $delCart=$cart->delAllCart();
+    header('location: success.php');
+  }
+  ?>
 <section class="page-header">
 	<div class="container">
 		<div class="row">
@@ -29,52 +38,55 @@ include 'views/inc/header.php';
             <div class="col-md-8">
                <div class="block billing-details">
                   <h4 class="widget-title">Thông tin nhận hàng</h4>
+                  <?php
+                $id=Session::get('customer_id');
+                $getcustomer = $cs->getallCustomer($id);
+                if($getcustomer){
+                    while($result=$getcustomer->fetch_assoc()){
+                ?>
                   <form class="checkout-form">
                      <div class="form-group">
-                        <label for="full_name">Full Name</label>
-                        <input type="text" class="form-control" id="full_name" placeholder="">
+                        <label for="full_name">Tên:</label>
+                        <input type="text" class="form-control" id="full_name" value="<?php echo $result['Name'];?>">
                      </div>
                      <div class="form-group">
-                        <label for="user_address">Address</label>
-                        <input type="text" class="form-control" id="user_address" placeholder="">
+                        <label for="user_address">Địa chỉ:</label>
+                        <input type="text" class="form-control" id="user_address" value="<?php echo $result['Address'];?>">
                      </div>
                      <div class="checkout-country-code clearfix">
                         <div class="form-group">
-                           <label for="user_post_code">Zip Code</label>
-                           <input type="text" class="form-control" id="user_post_code" name="zipcode" value="">
+                           <label for="user_post_code">Số điện thoại:</label>
+                           <input type="text" class="form-control" id="user_phone" name="phone" value="<?php echo $result['Phone'];?>">
                         </div>
                         <div class="form-group">
-                           <label for="user_city">City</label>
-                           <input type="text" class="form-control" id="user_city" name="city" value="">
+                           <label for="user_city">Email:</label>
+                           <input type="text" class="form-control" id="user_email" name="email" value="<?php echo $result['Email'];?>">
                         </div>
                      </div>
-                     <div class="form-group">
+                     <!-- <div class="form-group">
                         <label for="user_country">Country</label>
                         <input type="text" class="form-control" id="user_country" placeholder="">
-                     </div>
+                     </div> -->
                   </form>
+                  <?php }}?>
                </div>
                <div class="block">
                   <h4 class="widget-title">Phương thức thanh toán</h4>
-                  <p>Credit Cart Details (Secure payment)</p>
+                  <!-- <p>Credit Cart Details (Secure payment)</p> -->
                   <div class="checkout-product-details">
                      <div class="payment">
                         <div class="card-details">
-                           <form class="checkout-form">
-                              <div class="form-group">
-                                 <label for="card-number">Card Number <span class="required">*</span></label>
-                                 <input id="card-number" class="form-control" type="tel" placeholder="•••• •••• •••• ••••">
-                              </div>
-                              <div class="form-group half-width padding-right">
-                                 <label for="card-expiry">Expiry (MM/YY) <span class="required">*</span></label>
-                                 <input id="card-expiry" class="form-control" type="tel" placeholder="MM / YY">
-                              </div>
-                              <div class="form-group half-width padding-left">
-                                 <label for="card-cvc">Card Code <span class="required">*</span></label>
-                                 <input id="card-cvc" class="form-control" type="tel" maxlength="4" placeholder="CVC">
-                              </div>
-                              <a href="cart.php" class="btn btn-submit btn-solid-border">Quay về giỏ hàng</a>
-                           </form>
+                        <div class="form-group">
+                            <label for="delivery">Thanh toán khi nhận hàng</label> 
+                            <input type="radio" id="delivery" name="payment" value="Thanh toán khi nhận hàng"checked>
+                            <br>
+                            <label for="delivery">Thanh toán QR momo</label> 
+                            <input type="radio" id="momo" name="payment" value="Thanh toán khi nhận hàng">
+                        </div>
+                        <a href="cart.php" class="btn btn-submit btn-solid-border">Quay về giỏ hàng</a>
+                           <!-- <form class="checkout-form"> -->
+                     
+                           <!-- </form> -->
                         </div>
                      </div>
                   </div>
@@ -92,7 +104,7 @@ include 'views/inc/header.php';
                         while ($result=$getcart->fetch_assoc()){
                     ?>
                      <div class="media product-card">
-                        <a class="pull-left" href="product-single.html">
+                        <a class="pull-left" href="details.php?proId=<?php echo $result['productId']?>">
                            <img class="media-object" src="admin/uploads/product/<?php echo $result['image']?>" alt="productImage">
                         </a>
                         <div class="media-body">
@@ -123,10 +135,11 @@ include 'views/inc/header.php';
                         <span><?php echo $totalCart." "."VNĐ"?></span>
                      </div>
                      <?php }else{
-                        header('location: cart.php');
+                        // header('location: cart.php');
                      }?>
                      <div class="verified-icon">
-                        <a href="cart.php" class="btn btn-submit btn-solid-border pull-right">Thanh toán</a>
+                        <!-- <input name="submit" type="submit" class="btn btn-submit btn-solid-border pull-right" value="Thanh toán"></input> -->
+                        <a href="?orderid=order" class="btn btn-submit btn-solid-border pull-right" >Thanh toán </a>
                      </div>
                     
                   </div>

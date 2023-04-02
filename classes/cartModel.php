@@ -104,6 +104,32 @@ Class cartModel{
             return $alert;
         }
     }
+    public function insertOder( $customerId){
+        $sId = session_id();
+        $query="SELECT * FROM cart WHERE sid = '$sId' ";
+        $getProduct=$this->db->select($query);
+        if($getProduct){
+            while($result=$getProduct->fetch_assoc()){
+                $productid=$result['productId'];
+                $productname=$result['productName'];
+                $quantity=$result['quantity'];
+                $price=$result['price']*$quantity;
+                $image=$result['image'];
+                $customer_id=$customerId;
+            $query_insertOrder="INSERT INTO orders (productId,productName,customerId,Quantity,Price,Image) 
+            VALUES ('$productid','$productname','$customer_id','$quantity','$price','$image')";
+            $insertOrder=$this->db->insert($query_insertOrder);
+            // }if($insertOrder){
+
+            // }else{
+
+            // }
+
+        }
+
+
+     }
+    }
 }
 
 ?>

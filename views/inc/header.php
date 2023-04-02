@@ -156,6 +156,7 @@ spl_autoload_register(function($className) {
 					<li class="dropdown search dropdown-slide">
 						<?php
 						if(isset($_GET['customerId'])){
+							//customer thoat // xoa toan bo gio hang
 							$delCart=$cart->delAllCart();
 							Session::destroy();
 						}

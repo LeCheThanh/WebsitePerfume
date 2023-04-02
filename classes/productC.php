@@ -163,6 +163,20 @@ Class productC{
         return $result;
 
     }
+    public function GetAll(){
+        $sp_tungtrang = 4;
+        if(!isset($_GET['trang'])){
+            $trang=1;
+        }else{
+            $trang=$_GET['trang'];
+        }
+        /// Lay san pham tu vi tri $trang -1 *4( vi chon 4 san pham moi trang)
+        $tutrang = ($trang-1)* $sp_tungtrang;
+        $query=" SELECT * FROM  `products` ORDER BY productId DESC LIMIT '$sp_tungtrang','$tutrang'";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
 }
 
 ?>

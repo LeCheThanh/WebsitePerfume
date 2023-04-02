@@ -91,6 +91,9 @@ include 'views/inc/header.php';
                            <!-- <form class="checkout-form"> -->
                      
                            <!-- </form> -->
+                        <form action="congthanhtoan.php" method="post">
+                        <button id="redirect" name="redirect" class="btn btn-submit btn-solid-border">Thanh toán QR momo</button>
+                        </form>
                         </div>
                      </div>
                   </div>

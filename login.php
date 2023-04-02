@@ -1,6 +1,6 @@
 <?php
 include 'views/inc/header.php';
-require_once 'config.php';
+
 ?>
 <?php
 $login_check= Session::get('customer_login');
@@ -131,14 +131,6 @@ if($login_check){
 												<div class="text-center">
 													Chưa có tài khoản?
 													<a href="register.php" tabindex="5" class="forgot-password">Đăng kí</a>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-lg-12">
-												<div class="text-center">
-													Login FB
-													<a href="<?php echo $fb_login_url; ?>" tabindex="5" class="forgot-password">FB</a>
 												</div>
 											</div>
 										</div>

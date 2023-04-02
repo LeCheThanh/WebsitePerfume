@@ -13,6 +13,9 @@ if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
 	$Addtocart = $cart->addtocart($productId,$quantity);
 }
 ?>
+<!-- FORM COMMENT -->
+
+<!-- FORM COMMENT -->
 <section class="single-product">
 	<div class="container">
 		<div class="row">
@@ -38,7 +41,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
 		<div class="row mt-20">
 			<div class="col-md-5">
 				<div class="single-product-slider">
-					<div id="carousel-custom" class="carousel slide" data-ride="carousel">
+					<div id="" class="" data-ride="">
 						<div class="carousel-outer">
 							<!-- me art lab slider -->
 							<div class="carousel-inner ">
@@ -51,16 +54,16 @@ if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
 							</div>
 							
 							<!-- sag sol -->
-							<a class="left carousel-control" href="#carousel-custom" data-slide="prev">
+							<!-- <a class="left carousel-control" href="#carousel-custom" data-slide="prev">
 								<i class="tf-ion-ios-arrow-left"></i>
 							</a>
 							<a class="right carousel-control" href="#carousel-custom" data-slide="next">
 								<i class="tf-ion-ios-arrow-right"></i>
-							</a>
+							</a>-->
 						</div>
 						
 						<!-- thumb -->
-						<ol class="carousel-indicators mCustomScrollbar meartlab">
+						<!-- <ol class="carousel-indicators mCustomScrollbar meartlab">
 							<li data-target="#carousel-custom" data-slide-to="0" class="active">
 								<img src="images/shop/single-products/product-1.jpg" alt="">
 							</li>
@@ -82,7 +85,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
 							<li data-target="#carousel-custom" data-slide-to="6">
 								<img src="images/shop/single-products/product-7.jpg" alt="">
 							</li>
-						</ol>
+						</ol> -->
 					</div>
 				</div>
 			</div>
@@ -97,10 +100,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
 					<div class="product-size">
 						<span>Size:</span>
 						<select class="form-control">
-							<option>S</option>
-							<option>M</option>
-							<option>L</option>
-							<option>XL</option>
+							<option>100ml</option>
 						</select>
 					</div>
 				
@@ -140,9 +140,15 @@ if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
 					</ul>
 					<div class="tab-content patternbg">
 						<div id="details" class="tab-pane fade active in">
-							<h4>Product Description</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut per spici</p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis delectus quidem repudiandae veniam distinctio repellendus magni pariatur molestiae asperiores animi, eos quod iusto hic doloremque iste a, nisi iure at unde molestias enim fugit, nulla voluptatibus. Deserunt voluptate tempora aut illum harum, deleniti laborum animi neque, praesentium explicabo, debitis ipsa?</p>
+							<h4>Mô tả sản phẩm</h4>
+							<?php  $getproductDetail = $pro->getDetails($productId);
+                                if($getproductDetail){
+							while($result =  $getproductDetail->fetch_assoc()){
+                ?>
+							<p><?php echo $result['productDesc'];?></p>
+							
+							<?php }}?>
+							
 						</div>
 						<div id="reviews" class="tab-pane fade">
 							<div class="post-comments">
@@ -233,7 +239,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
 
 </section>
 <!-- End DETAILS -->
-<section class="products related-products section">
+<!-- <section class="products related-products section">
 	<div class="container">
 		<div class="row">
 			<div class="title text-center">
@@ -379,7 +385,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
 	        </div>
     	</div>
   	</div>
-</div>
+</div> -->
 
 <?php
 include 'views/inc/footer.php';

@@ -215,6 +215,40 @@ if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
 			
 				</div>
 				<!-- Modal -->
+				<div class="modal product-modal fade" id="product-modal-<?php echo $result['productId']; ?>">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<i class="fas fa-close"></i>
+						</button>
+						<div class="modal-dialog " role="document">
+							<div class="modal-content">
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-md-8 col-sm-6 col-xs-12">
+											<div class="modal-image">
+												<img class="img-responsive" src="admin/uploads/product/<?php echo $result['productImage']?>" alt="product-img" alt="product-img" />
+											</div>
+										</div>
+										<div class="col-md-4 col-sm-6 col-xs-12">
+											<div class="product-short-details">
+												<h2 class="product-title"><?php echo $result['productName']?></h2>
+												<p class="product-price"><?php echo $result['productPrice']." ".'VNĐ'?></p>
+												<p class="product-short-description">
+												<?php echo $result['productDesc']?>
+												</p>
+												<!-- <a href="cart.html" class="btn btn-main">Thêm vào giỏ hàng</a> -->
+											
+												<!-- <form method="post" action="">
+												<button type="submit" name="submit "class="btn btn-main">Thêm vào giỏ hàng</button>
+												</form> -->
+
+												<a href="details.php?proId=<?php echo $result['productId']?>" class="btn btn-transparent">Chi tiết sản phẩm</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div><!-- /.modal -->
 				<!-- /.modal -->
 				<?php	}} ?>
 			</div>

@@ -22,7 +22,7 @@ include 'views/inc/header.php';
 					<h1 class="page-name"><?php echo  $cateName['cateName'];?></h1>
                     <?php }?>
 					<ol class="breadcrumb">
-						<li><a href="index.html">Trang chủ</a></li>
+						<li><a href="index.php">Trang chủ</a></li>
 						<li class="active">Sản phẩm</li>
 					</ol>
 				</div>
@@ -30,6 +30,7 @@ include 'views/inc/header.php';
 		</div>
 	</div>
 </section>
+
 <section class="products section">
 	<div class="container">
 		<div class="row">
@@ -52,14 +53,14 @@ include 'views/inc/header.php';
 								<li>
 			                        <a href="#!"><i class="tf-ion-ios-heart"></i></a>
 								</li>
-								<li>
+								<!-- <li>
 									<a href="#!"><i class="tf-ion-android-cart"></i></a>
-								</li>
+								</li> -->
 							</ul>
                       	</div>
 					</div>
 					<div class="product-content">
-						<h4><a href="product-single.html"><?php echo $result['productName'];?></a></h4>
+						<h4><a href="details.php?proId=<?php echo $result['productId']?>"><?php echo $result['productName'];?></a></h4>
 						<p class="price"><?php echo $result['productPrice'];?></p>
 					</div>
 				</div>

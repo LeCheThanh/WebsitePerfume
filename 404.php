@@ -8,6 +8,7 @@ include 'views/inc/header.php';
                 <h2>Trang không tồn tại</h2>
             </div>
         </div>
+</div>
 </body>
 <?php
 include 'views/inc/footer.php';

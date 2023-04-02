@@ -143,67 +143,20 @@ spl_autoload_register(function($className) {
 
 
 					<!-- Wish list -->
-					<li class="dropdown cart-nav dropdown-slide">
-						<a href="" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-						<a href="cart.php"><i class="fa fa-heart"></i></a>Thích</a>
-						<div class="dropdown-menu cart-dropdown">
-							<!-- Cart Item -->
-							<?php $getcart= $cart->getProductCart();
-								if($getcart){
-									while($result = $getcart->fetch_assoc()){
-
-							
-							?>
-							<div class="media">
-								<a class="pull-left" href="#!">
-									<img class="media-object" src="admin/uploads/product/<?php echo $result['image']?>" alt="image" />
-								</a>
-								<div class="media-body">
-									<h4 class="media-heading"><a href="#!"><?php echo $result['productName']?></a></h4>
-									<div class="cart-price">
-										<span><?php echo $result['quantity']?>x</span>
-										<span><?php echo $result['price']." "."VNĐ"?></span>
-									</div>
-									<h5><strong><?php $total= $result['price'] * $result['quantity']; echo $total." "."VNĐ"?></strong></h5>
-								</div>
-								<a href="#!" class="remove"><i class="tf-ion-close"></i></a>
-							</div>
-							<?php
-								}
-							}?><!-- / Cart Item -->
-							<!-- / Cart Item -->
-							<?php if($getcart){
-								$total= Session::get("total");
-
-								?>
-								
-							<div class="cart-summary">
-								<span>Tổng cộng</span>
-								<span class="total-price"><?php echo $total." "."VNĐ";?></span>
-							</div>
-							<ul class="text-center cart-buttons">
-								<li><a href="cart.php" class="btn btn-small btn-solid-border">Xem giỏ hàng</a></li>
-								<li><a href="checkout.php" class="btn btn-small btn-solid-border">Thanh toán</a></li>
-							</ul>
-						</div>
-							<?php }else{
-								echo'Danh sách yêu thích trống!';
-							}?>
-
-					</li>
+				
 
 
 					<!-- Wish list -->
 					<!-- Search -->
-					<!-- <li class="dropdown search dropdown-slide">
+					<li class="dropdown search dropdown-slide">
 						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
-								class="tf-ion-ios-search-strong"></i> Search</a>
+								class="fas fa-heart"></i>Thích</a>
 						<ul class="dropdown-menu search-dropdown">
 							<li>
-								<form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
+								<span>Comming soon</span>
 							</li>
 						</ul>
-					</li> -->
+					</li>
 					<!-- / Search -->
 
 					<!-- Languages -->
@@ -284,7 +237,7 @@ spl_autoload_register(function($className) {
 								<!-- Basic -->
 								<div class="col-lg-12 col-md-12 mb-sm-6">
 									<ul>
-									<li><a href="shop.html">Tất cả</a></li>
+									<li><a href="shop.php">Tất cả</a></li>
 									<?php $getlistCate = $cate->showlistCate();
 									if($getlistCate){
 										while($result =$getlistCate->fetch_assoc()){
@@ -316,85 +269,21 @@ spl_autoload_register(function($className) {
 
 
 					<!-- Pages -->
-					<li class="dropdown full-width dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
-							role="button" aria-haspopup="true" aria-expanded="false">Pages <span
-								class="tf-ion-ios-arrow-down"></span></a>
-						<div class="dropdown-menu">
-							<div class="row">
-
-								<!-- Introduction -->
-								<div class="col-sm-3 col-xs-12">
-									<ul>
-										<li class="dropdown-header">Introduction</li>
-										<li role="separator" class="divider"></li>
-										<li><a href="contact.html">Contact Us</a></li>
-										<li><a href="about.html">About Us</a></li>
-										<li><a href="404.html">404 Page</a></li>
-										<li><a href="coming-soon.html">Coming Soon</a></li>
-										<li><a href="faq.html">FAQ</a></li>
-									</ul>
-								</div>
-
-								<!-- Contact -->
-								<div class="col-sm-3 col-xs-12">
-									<ul>
-										<li class="dropdown-header">Dashboard</li>
-										<li role="separator" class="divider"></li>
-										<li><a href="dashboard.html">User Interface</a></li>
-										<li><a href="order.html">Orders</a></li>
-										<li><a href="address.html">Address</a></li>
-										<li><a href="profile-details.html">Profile Details</a></li>
-									</ul>
-								</div>
-
-								<!-- Utility -->
-								<div class="col-sm-3 col-xs-12">
-									<ul>
-										<li class="dropdown-header">Utility</li>
-										<li role="separator" class="divider"></li>
-										<li><a href="login.html">Login Page</a></li>
-										<li><a href="signin.html">Signin Page</a></li>
-										<li><a href="forget-password.html">Forget Password</a></li>
-									</ul>
-								</div>
-
-								<!-- Mega Menu -->
-								<div class="col-sm-3 col-xs-12">
-									<a href="shop.html">
-										<img class="img-responsive" src="images/shop/header-img.jpg" alt="menu image" />
-									</a>
-								</div>
-							</div><!-- / .row -->
-						</div><!-- / .dropdown-menu -->
-					</li><!-- / Pages -->
+					
 
 
 
 					<!-- Blog -->
 					<li class="dropdown dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
-							role="button" aria-haspopup="true" aria-expanded="false">Blog <span
+						<a href="404.php" >Blog <span
 								class="tf-ion-ios-arrow-down"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-							<li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-							<li><a href="blog-full-width.html">Blog Full Width</a></li>
-							<li><a href="blog-grid.html">Blog 2 Columns</a></li>
-							<li><a href="blog-single.html">Blog Single</a></li>
-						</ul>
 					</li><!-- / Blog -->
 
 					<!-- Shop -->
 					<li class="dropdown dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
-							role="button" aria-haspopup="true" aria-expanded="false">Elements <span
+						<a href="404.php" >Liên hệ<span
 								class="tf-ion-ios-arrow-down"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="typography.html">Typography</a></li>
-							<li><a href="buttons.html">Buttons</a></li>
-							<li><a href="alerts.html">Alerts</a></li>
-						</ul>
+					
 					</li><!-- / Blog -->
 				</ul><!-- / .nav .navbar-nav -->
 

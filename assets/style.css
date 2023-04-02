@@ -609,7 +609,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 
 .commonAccordion .panel .panel-title a:before, .commonAccordion-2 .panel .panel-title a:before {
   color: #555;
-  content: "\f209";
+
   position: absolute;
   right: 25px;
   font-family: "themefisher-font";

@@ -20,6 +20,9 @@ include 'views/inc/header.php';
     header('location: success.php');
   }
   ?>
+  <?php
+   $checkmethodpayment = $_POST['payment'];
+  ?>
 <section class="page-header">
 	<div class="container">
 		<div class="row">
@@ -81,18 +84,21 @@ include 'views/inc/header.php';
                      <div class="payment">
                         <div class="card-details">
                         <div class="form-group">
+                           <form action="" method="post">
                             <label for="delivery">Thanh toán khi nhận hàng</label> 
-                            <input type="radio" id="delivery" name="payment" value="Thanh toán khi nhận hàng"checked>
+                            <input type="radio" id="delivery" name="payment" value="cash"checked>
                             <br>
                             <label for="delivery">Thanh toán QR momo</label> 
-                            <input type="radio" id="momo" name="payment" value="Thanh toán khi nhận hàng">
+                            <input type="radio" id="momo" name="payment" value="momo">
+                            </form>
                         </div>
                         <a href="cart.php" class="btn btn-submit btn-solid-border">Quay về giỏ hàng</a>
+                        <a href="congthanhtoan.php" class="btn btn-submit btn-solid-border">Thanh toán Momo</a>
                            <!-- <form class="checkout-form"> -->
                      
                            <!-- </form> -->
-                        <form action="congthanhtoan.php" method="post">
-                        <button id="redirect" name="redirect" class="btn btn-submit btn-solid-border">Thanh toán QR momo</button>
+                        <!-- <form action="congthanhtoan.php" method="post">
+                        <button id="redirect" name="redirect" class="btn btn-submit btn-solid-border">Thanh toán QR momo</button> -->
                         </form>
                         </div>
                      </div>
@@ -116,7 +122,7 @@ include 'views/inc/header.php';
                         </a>
                         <div class="media-body">
                            <h4 class="media-heading"><a href="details.php?proId=<?php echo $result['productId']?>"><?php echo $result['productName']?></a></h4>
-                           <p class="price"><?php echo $result['quantity']?> x <?php echo $result['price']." "."VNĐ"?></p>
+                           <p class="price"><?php echo $result['quantity']?> x <?php echo $fm->format_currency($result['price'])." "."VNĐ"?></p>
                            <?php $total= $result['price'] * $result['quantity'];?>
                            <span class="remove"><a href="?cartId=<?php echo $result['cartId']?>">xóa</a></span>
                         </div>
@@ -130,7 +136,7 @@ include 'views/inc/header.php';
                      <?php if($getcart){?>
                         <li>
                            <span>Thành tiền:</span>
-                           <span class="price"><?php echo $totalCart." "."VNĐ"?></span>
+                           <span class="price"><?php echo $fm->format_currency($totalCart)." "."VNĐ"?></span>
                         </li>
                         <li>
                            <span>Shipping:</span>
@@ -139,13 +145,14 @@ include 'views/inc/header.php';
                      </ul>
                      <div class="summary-total">
                         <span>Tổng cộng</span>
-                        <span><?php echo $totalCart." "."VNĐ"?></span>
+                        <span><?php echo $fm->format_currency($totalCart)." "."VNĐ"?></span>
                      </div>
                      <?php }else{
                         // header('location: cart.php');
                      }?>
                      <div class="verified-icon">
                         <!-- <input name="submit" type="submit" class="btn btn-submit btn-solid-border pull-right" value="Thanh toán"></input> -->
+                        
                         <a href="?orderid=order" class="btn btn-submit btn-solid-border pull-right" >Thanh toán </a>
                      </div>
                     

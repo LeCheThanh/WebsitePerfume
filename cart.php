@@ -69,7 +69,7 @@ if(!isset($_GET['id'])){
                           <a href="details.php?proId=<?php echo $result['productId']?>"><?php echo $result['productName']?></a>
                         </div>
                       </td>
-                      <td class=""><?php echo $result['price']." "."VNĐ"?></td>
+                      <td class=""><?php echo $fm->format_currency($result['price'])." "."VNĐ"?></td>
                       <form method="post">
                       <td class="">
                       <input name="quantity" type="number" min="1" value="<?php echo $result['quantity']?>" style="width:50%;text-align:center;">
@@ -77,7 +77,7 @@ if(!isset($_GET['id'])){
                       <button type="submit" name="submit">Cập nhật</button>
                       </td>
                       </form>
-                      <td class=""><?php $total= $result['price'] * $result['quantity']; echo $total." "."VNĐ"?></td>
+                      <td class=""><?php $total= $result['price'] * $result['quantity']; echo $fm->format_currency($total)." "."VNĐ"?></td>
                       <td class="">
                      
                       <button class="product-remove"><a onclick="return confirm('Bạn chắc chắn muốn xóa?')" href="?cartId=<?php echo $result['cartId']?>">Xóa</a></button>
@@ -95,7 +95,7 @@ if(!isset($_GET['id'])){
                 <?php if($getcart){?>
                   <tr>
                     <th> <b>Tổng tiền:</b>  </th>
-                    <td><?php echo  $totalCart.' '.'VNĐ';  Session::set("total",$totalCart);?></td>
+                    <td><?php echo  $fm->format_currency($totalCart).' '.'VNĐ';  Session::set("total",$totalCart);?></td>
                   </tr>
                     <?php 
                     }else{

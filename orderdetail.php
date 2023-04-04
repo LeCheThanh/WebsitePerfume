@@ -75,9 +75,9 @@ include 'views/inc/header.php';
                           <a href="details.php?proId=<?php echo $result['productId']?>"><?php echo $result['productName']?></a>
                         </div>
                       </td>
-                      <td class=""><?php echo $result['Price']." "."VNĐ"?></td>
+                      <td class=""><?php echo $fm->format_currency($result['Price'])." "."VNĐ"?></td>
                       <td name="quantity"> <?php echo $result['Quantity']?></td>
-                      <td class=""><?php $total= $result['Price'] * $result['Quantity']; echo $total." "."VNĐ"?></td>
+                      <td class=""><?php $total= $result['Price'] * $result['Quantity']; echo $fm->format_currency($total)." "."VNĐ"?></td>
                       <td class="" name="Status"><?php
                       if($result['Status']==0){
                         echo '<span class="label label-warning">Đang xử lý</span>';
@@ -116,7 +116,7 @@ include 'views/inc/header.php';
                 <?php if($getcart){?>
                   <tr>
                     <th> <b>Tổng tiền:</b>  </th>
-                    <td><?php echo  $totalCart.' '.'VNĐ';  Session::set("total",$totalCart);?></td>
+                    <td><?php echo  $fm->format_currency($totalCart).' '.'VNĐ';  Session::set("total",$totalCart);?></td>
                   </tr>
                     <?php 
                     }else{

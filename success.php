@@ -24,7 +24,7 @@ if ($login_check == false) {
             }
           }
           ?>
-          <p>Tổng đơn hàng của bạn là: <?php echo $amountPrice . " " . 'VNĐ'; ?></p>
+          <p>Tổng đơn hàng của bạn là: <?php echo $fm->format_currency($amountPrice). " " . 'VNĐ'; ?></p>
           <p>Đơn hàng sẽ được giao với thời gian sớm nhất có thể</p>
           <a href="orderdetail.php" class="btn btn-main mt-20">Xem chi tiết đơn hàng</a>
           <a href="index.php" class="btn btn-main mt-20">Tiếp tục mua sắm</a>

@@ -37,6 +37,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
 }
 ?>
 
+
 <section class="product-category index section">
 	<div class="container">
 		<div class="row">
@@ -134,7 +135,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
 						</div>
 						<div class="product-content">
 							<h4><a href="details.php?proId=<?php echo $result['productId']?>"><?php echo $result['productName']?></a></h4>
-							<p class="price"><?php echo $result['productPrice']." ".'VNĐ'?></p>
+							<p class="price"><?php echo $fm->format_currency($result['productPrice'])." ".'VNĐ'?></p>
 						</div>
 					</div>
 				</div>
@@ -154,7 +155,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
 										<div class="col-md-4 col-sm-6 col-xs-12">
 											<div class="product-short-details">
 												<h2 class="product-title"><?php echo $result['productName']?></h2>
-												<p class="product-price"><?php echo $result['productPrice']." ".'VNĐ'?></p>
+												<p class="product-price"><?php echo $fm->format_currency($result['productPrice'])." ".'VNĐ'?></p>
 												<p class="product-short-description">
 												<?php echo $result['productDesc']?>
 												</p>
@@ -208,7 +209,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
 						</div>
 						<div class="product-content">
 							<h4><a href="details.php?proId=<?php echo $result['productId']?>"><?php echo $result['productName']?></a></h4>
-							<p class="price"><?php echo $result['productPrice']." ".'VNĐ'?></p>
+							<p class="price"><?php echo $fm->format_currency($result['productPrice'])." ".'VNĐ'?></p>
 						</div>
 						<a href="details.php?proId=<?php echo $result['productId']?>" class="btn btn-transparent">Chi tiết sản phẩm</a>
 					</div>
@@ -231,7 +232,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
 										<div class="col-md-4 col-sm-6 col-xs-12">
 											<div class="product-short-details">
 												<h2 class="product-title"><?php echo $result['productName']?></h2>
-												<p class="product-price"><?php echo $result['productPrice']." ".'VNĐ'?></p>
+												<p class="product-price"><?php echo $fm->format_currency($result['productPrice'])." ".'VNĐ'?></p>
 												<p class="product-short-description">
 												<?php echo $result['productDesc']?>
 												</p>

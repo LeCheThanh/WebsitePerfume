@@ -60,14 +60,14 @@ $extraData = "";
         'orderId' => $orderId,
         'orderInfo' => $orderInfo,
         'redirectUrl' => $redirectUrl,
-        // 'ipnUrl' => $ipnUrl,
+        'ipnUrl' => $ipnUrl,
         'lang' => 'vi',
         'extraData' => $extraData,
         'requestType' => $requestType,
         'signature' => $signature);
     $result = execPostRequest($endpoint, json_encode($data));
     $jsonResult = json_decode($result, true);  // decode json
-
+    // print_r($jsonResult);
     //Just a example, please check more in there
 
     header('Location: ' . $jsonResult['payUrl']);

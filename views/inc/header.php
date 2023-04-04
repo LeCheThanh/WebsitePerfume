@@ -111,9 +111,9 @@ spl_autoload_register(function($className) {
 									<h4 class="media-heading"><a href="#!"><?php echo $result['productName']?></a></h4>
 									<div class="cart-price">
 										<span><?php echo $result['quantity']?>x</span>
-										<span><?php echo $result['price']." "."VNĐ"?></span>
+										<span><?php echo $fm->format_currency($result['price'])." "."VNĐ"?></span>
 									</div>
-									<h5><strong><?php $total= $result['price'] * $result['quantity']; echo $total." "."VNĐ"?></strong></h5>
+									<h5><strong><?php $total= $result['price'] * $result['quantity']; echo $fm->format_currency($total)." "."VNĐ"?></strong></h5>
 								</div>
 								<a href="#!" class="remove"><i class="tf-ion-close"></i></a>
 							</div>
@@ -128,7 +128,7 @@ spl_autoload_register(function($className) {
 								
 							<div class="cart-summary">
 								<span>Tổng cộng</span>
-								<span class="total-price"><?php echo $total." "."VNĐ";?></span>
+								<span class="total-price"><?php echo $fm->format_currency($total)." "."VNĐ";?></span>
 							</div>
 							<ul class="text-center cart-buttons">
 								<li><a href="cart.php" class="btn btn-small btn-solid-border">Xem giỏ hàng</a></li>

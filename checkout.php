@@ -21,7 +21,14 @@ include 'views/inc/header.php';
   }
   ?>
   <?php
+  if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
    $checkmethodpayment = $_POST['payment'];
+	if( $checkmethodpayment == 'cash'){
+      header('location: ?orderid=order');
+   }else{
+      header('location: congthanhtoan.php');
+   }
+   }
   ?>
 <section class="page-header">
 	<div class="container">
@@ -90,10 +97,10 @@ include 'views/inc/header.php';
                             <br>
                             <label for="delivery">Thanh toán QR momo</label> 
                             <input type="radio" id="momo" name="payment" value="momo">
+                            <button type="submit" name="submit" class="btn btn-submit btn-solid-border pull-right">Thanh toán</button>
                             </form>
                         </div>
-                        <a href="cart.php" class="btn btn-submit btn-solid-border">Quay về giỏ hàng</a>
-                        <a href="congthanhtoan.php" class="btn btn-submit btn-solid-border">Thanh toán Momo</a>
+                       
                            <!-- <form class="checkout-form"> -->
                      
                            <!-- </form> -->
@@ -151,9 +158,12 @@ include 'views/inc/header.php';
                         // header('location: cart.php');
                      }?>
                      <div class="verified-icon">
+                       
                         <!-- <input name="submit" type="submit" class="btn btn-submit btn-solid-border pull-right" value="Thanh toán"></input> -->
+                        <a href="cart.php" class="btn btn-submit btn-solid-border">Quay về giỏ hàng</a>
+                        <!-- <a href="?orderid=order" class="btn btn-submit btn-solid-border pull-right" >Thanh toán </a> -->
                         
-                        <a href="?orderid=order" class="btn btn-submit btn-solid-border pull-right" >Thanh toán </a>
+                      
                      </div>
                     
                   </div>

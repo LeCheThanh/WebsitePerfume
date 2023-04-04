@@ -31,7 +31,7 @@ include 'views/inc/slider.php';
 </section> -->
 <?php
 if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['submit'])){
-	$productId=$_POST['submit'];
+	$productId=$_POST['submit'];///$_POST['productId']///not fixed yet
 
 	$Addtocart = $cart->addtocart($productId,'1');
 }

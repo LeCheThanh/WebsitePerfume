@@ -1,5 +1,7 @@
 <!-- MOMO QR -->
-
+<?php
+include 'views/inc/header.php';
+?>
 <?php
 function execPostRequest($url, $data)
 {
@@ -27,8 +29,20 @@ $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
 $partnerCode = 'MOMOBKUN20180529';
 $accessKey = 'klm05TvNBzhg7h7j';
 $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
-$orderInfo = "Thanh toán qua MoMo";
-$amount = "10000";
+
+$getcart = $cart->getProductCart();
+if($getcart){
+    $totalCart=0;
+   
+    while ($result=$getcart->fetch_assoc()){
+
+// $orderInfo = "Thanh toán qua MoMo";
+    $orderInfo =  $result['productName']." x ".$result['quantity'];
+    $total = $result['price']*$result['quantity'];
+    $totalCart+=$total;
+    }}
+    // $amount = "10000";
+    $amount = $totalCart;
 $orderId = time() ."";
 $redirectUrl = "http://localhost:3000/success.php";
 $ipnUrl = "https://webhook.site/b3088a6a-2d17-4f8d-a383-71389a6c600b";
@@ -40,7 +54,8 @@ $extraData = "";
     $accessKey = $accessKey;
     $serectkey = $secretKey;
     $orderId = time(); // Mã đơn hàng
-    $orderInfo = "Thanh toán đơn hàng qua QR momo";
+    // $orderInfo = "Thanh toán đơn hàng qua QR momo";
+    $orderInfo = $orderInfo;
     $amount = $amount;
     // $ipnUrl = $_POST["ipnUrl"];
     $redirectUrl = $redirectUrl;
@@ -67,10 +82,12 @@ $extraData = "";
         'signature' => $signature);
     $result = execPostRequest($endpoint, json_encode($data));
     $jsonResult = json_decode($result, true);  // decode json
-    // print_r($jsonResult);
+    print_r($jsonResult);
     //Just a example, please check more in there
 
     header('Location: ' . $jsonResult['payUrl']);
 // }
 
-?>
+?><?php
+include 'views/inc/footer.php';
+?> 
